@@ -22,9 +22,9 @@ public class NewsStand
      * Get list of all books in the register
      */
     public String getList() {
-        ArrayList<Book> bookList = books.listAllBooks();
+        ArrayList<Book> literatureList = books.listAllBooks();
         String listOfBooks = "";
-        for(Book book: bookList)
+        for(Book book: literatureList)
         {
             listOfBooks += "Title: " + book.getTitle() + ", Author: " 
                 + book.getAuthor() + ", Price: " + book.getPrice() + ",-\n";
