@@ -1,0 +1,32 @@
+
+/**
+ * Holds which issue and the published date of a magazine
+ *
+ * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
+ * @version 0.3, 2016-03-11
+ */
+public class Magazine extends Literature 
+{
+private final int issue;
+private final String datePublished;
+        
+/** 
+ * Creates a new magazine with the given title, number of pages, 
+ * the publish date, the cost of the magazine and the name of the publisher.
+ * @param issue Which issue the magazine is.
+ * @param datePublished Publish date of the magazine.
+*/
+   public Magazine(String title, double price, String publisher, int numberOfPages, 
+           int issue, String datePublished)
+   {
+     super(title, price, publisher, numberOfPages);
+     this.issue = issue;
+     this.datePublished = datePublished;
+   }
+   
+   /**
+    * Returns the issue number.
+    * @return the issue number.
+    */
+   
+        }
