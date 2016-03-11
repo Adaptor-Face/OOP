@@ -3,10 +3,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 /**
- * Holds the list of books.
+ * Holds the list of literatures.
  * You are able to print out the list alphabeticaly or by price
- * You can search for books by  author name, surname and/or last name,
- * by book title, partial title allowed, and by publisher.
+ * You can search for literatures by  author name, surname and/or last name,
+ * by literature title, partial title allowed, and by publisher.
  * Generic search searches within author, title and publisher. 
  * 
  * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
@@ -14,65 +14,66 @@ import java.util.Iterator;
  */
 public class LiteratureRegister
 {
-    private ArrayList<Book> bookList;
+    private final ArrayList<Literature> literatureList;
     /**
-     * Creates a list of the current books that re being sold.
+     * Creates a list of the current literatures that re being sold.
      */
     public LiteratureRegister()
     {
-        bookList = new ArrayList<Book>();
+        literatureList = new ArrayList<>();
     }
 
     /**
-     * Adds a new book to the register.
-     * @param bookToAdd The book you want to add to the register.
+     * Adds a new literature to the register.
+     * @param literatureToAdd The literature you want to add to the register.
      */
-    public void addNewBook(Book bookToAdd)
+    public void addNewLiterature(Literature literatureToAdd)
     {
-        bookList.add(bookToAdd);
+        literatureList.add(literatureToAdd);
     }
     /*
     /**
-     * Prints out a list containing all books, complete with author name, title and price.
+     * Prints out a list containing all literatures, complete with author name, title and price.
 
-    public void listAllBooks()
+    public void listAllLiteratures()
     {
     System.out.println();
-    if (bookList.size() <= 0)
+    if (literatureList.size() <= 0)
     {
-    System.out.println("There is no books.");
+    System.out.println("There is no literatures.");
     }
-    for(Book book : bookList)
+    for(Literature literature : literatureList)
     {
-    System.out.println("Title: " + book.getTitle() + ", Author: " 
-    + book.getAuthor() + ". Price: " + book.getPrice() + ",-");
+    System.out.println("Title: " + literature.getTitle() + ", Author: " 
+    + literature.getAuthor() + ". Price: " + literature.getPrice() + ",-");
     }
     }
      */
     /**
-     * Prints out the list of books, from cheapest to most expensive.
+     * Prints out the list of literatures, from cheapest to most expensive.
+     * @return 
      */
-    public String listAllBooksByPrice()
+    public String listAllLiteraturesByPrice()
     {
         String a = null;
-        if (bookList.size() <= 0)
+        if (literatureList.size() <= 0)
         {
-            a = "There is no books.";
+            a = "There is no literature.";
         }
-        ArrayList<Double> bookPriceList = new ArrayList<Double>();
-        for(Book book : bookList)
+        ArrayList<Double> literaturePriceList = new ArrayList<Double>();
+        for(Literature literature : literatureList)
         {
-            bookPriceList.add(book.getPrice());
+            literaturePriceList.add(literature.getPrice());
         }
-        Collections.sort(bookPriceList);
-        for(double price : bookPriceList)
+        Collections.sort(literaturePriceList);
+        for(double price : literaturePriceList)
         {
-            for(Book book: bookList)
+            for(Literature literature: literatureList)
             {
-                if(price == book.getPrice())
+                if(price == literature.getPrice())
                 {
-                    a = "Title: " + book.getTitle() + ", Author: " 
-                    + book.getAuthor() + ". Price: " + book.getPrice() + ",-";
+                    a = "Title: " + literature.getTitle() + ", Author: " 
+                    + literature.getAuthor() + ". Price: " + literature.getPrice() + ",-";
                 }
             }
         }
@@ -80,72 +81,72 @@ public class LiteratureRegister
     }
 
     //     /**
-    //      * Prints out the list of books, alphabeticaly.
+    //      * Prints out the list of literatures, alphabeticaly.
     //      */
-    //     public void listAllBooks()
+    //     public void listAllLiteratures()
     //     {
     //         System.out.println();
-    //         if (bookList.size() <= 0)
+    //         if (literatureList.size() <= 0)
     //         {
-    //             System.out.println("There is no books.");
+    //             System.out.println("There is no literatures.");
     //         }
-    //         ArrayList<String> sortedBookList = new ArrayList<String>();
-    //         for(Book book : bookList)
+    //         ArrayList<String> sortedLiteratureList = new ArrayList<String>();
+    //         for(Literature literature : literatureList)
     //         {
-    //             sortedBookList.add(book.getTitle());
+    //             sortedLiteratureList.add(literature.getTitle());
     //         }
-    //         Collections.sort(sortedBookList);
-    //         for(String title : sortedBookList)
+    //         Collections.sort(sortedLiteratureList);
+    //         for(String title : sortedLiteratureList)
     //         {
-    //             for(Book book: bookList)
+    //             for(Literature literature: literatureList)
     //             {
-    //                 if(title.equals(book.getTitle()))
+    //                 if(title.equals(literature.getTitle()))
     //                 {
-    //                     System.out.println("Title: " + book.getTitle() + ", Author: " 
-    //                         + book.getAuthor() + ". Price: " + book.getPrice() + ",-");
+    //                     System.out.println("Title: " + literature.getTitle() + ", Author: " 
+    //                         + literature.getAuthor() + ". Price: " + literature.getPrice() + ",-");
     //                 }
     //             }
     //         }
     //     }
 
     /**
-     * Returns the list of books.
-     * @return the list of books.
+     * Returns the list of literatures.
+     * @return the list of literatures.
      */
-    public ArrayList<Book> listAllBooks()
+    public ArrayList<Literature> listAllLiteratures()
     {
-        ArrayList<Book> listToReturn = new ArrayList<Book>();
-        for(Book book : bookList)
+        ArrayList<Literature> listToReturn = new ArrayList<Literature>();
+        for(Literature literature : literatureList)
         {
-           listToReturn.add(book);
+           listToReturn.add(literature);
         }
         return listToReturn;
     }
 
         /**
-     * Searches for the book by title.
-     * @param title The title of the book you want. 
+     * Searches for the literature by title.
+     * @param title The title of the literature you want. 
      */
 
     public String searchByTitle(String title)
     {
-        String bookTitle = ("Matching books with the title " + title + ":");
+        String literatureTitle = ("Matching literatures with the title " + title + ":");
         Boolean found = false;
-        for(Book book : bookList)
+        for(Literature literature : literatureList)
         {
-            if(book.getTitle().toLowerCase().contains(title.toLowerCase()))
+            if(literature.getTitle().toLowerCase().contains(title.toLowerCase()))
             {
-                bookTitle += (" Title: " + book.getTitle() + ", Author: " 
-                    + book.getAuthor() + ", Price: " + book.getPrice() + ",-");
+                literatureTitle += (" Title: " + literature.getTitle() + ", Author: " 
+                    + literature.getAuthor() + ", Price: " + literature.getPrice() + ",-");
                 found = true;
             }
         }
         if (!found)
         {
-            bookTitle += ("No books found searching for " + title + ".");
+            literatureTitle += ("No literatures found searching for " + title + ".");
         }
 
-        return bookTitle;
+        return literatureTitle;
     }
 
     /**
@@ -156,20 +157,20 @@ public class LiteratureRegister
     public String searchAuthor(String authorName)
     {
 
-        String a = ("Matching books from author " + authorName + ":");
+        String a = ("Matching literatures from author " + authorName + ":");
         Boolean found = false;
-        for(Book book : bookList)
+        for(Literature literature : literatureList)
         {
-            if(book.getAuthor().toLowerCase().contains(authorName.toLowerCase()))
+            if(literature.getAuthor().toLowerCase().contains(authorName.toLowerCase()))
             {
-                a += ("Title: " + book.getTitle() + ", Author: " 
-                    + book.getAuthor() + ". Price: " + book.getPrice() + ",-");
+                a += ("Title: " + literature.getTitle() + ", Author: " 
+                    + literature.getAuthor() + ". Price: " + literature.getPrice() + ",-");
                 found = true;
             }
         }
         if (!found)
         {
-            a += ("No books found searching for " + authorName + ".");
+            a += ("No literatures found searching for " + authorName + ".");
         }
 
         return a;
@@ -181,78 +182,78 @@ public class LiteratureRegister
      */
     public String searchPublisher(String publisher)
     {
-        String a = ("Matching books from publisher " + publisher + ":");
+        String a = ("Matching literatures from publisher " + publisher + ":");
         Boolean found = false;
-        for(Book book : bookList)
+        for(Literature literature : literatureList)
         {
-            if(book.getPublisher().toLowerCase().contains(publisher.toLowerCase()))
+            if(literature.getPublisher().toLowerCase().contains(publisher.toLowerCase()))
             {
-                a += ("Title: " + book.getTitle() + ", Author: " 
-                    + book.getAuthor() + ". Price: " + book.getPrice() + ",-");
+                a += ("Title: " + literature.getTitle() + ", Author: " 
+                    + literature.getAuthor() + ". Price: " + literature.getPrice() + ",-");
                 found = true;
             }
         }
         if (!found)
         {
-            a += ("No books found searching for " + publisher + ".");
+            a += ("No literatures found searching for " + publisher + ".");
         }
 
         return a;
     }
 
     /**
-     * Generic search for books with title, publisher or author
+     * Generic search for literatures with title, publisher or author
      * matching search word.
      * @param search The word to search for.
      */
     public String genericSearch(String search)
     {
-        String a = ("Matching books searching for " + search + ":");
+        String a = ("Matching literatures searching for " + search + ":");
         Boolean found = false;
-        for(Book book : bookList)
+        for(Literature literature : literatureList)
         {
-            if(book.getPublisher().toLowerCase().contains(search.toLowerCase()) || book.getTitle().toLowerCase().contains(search.toLowerCase())
-            || book.getAuthor().toLowerCase().contains(search.toLowerCase()))
+            if(literature.getPublisher().toLowerCase().contains(search.toLowerCase()) || literature.getTitle().toLowerCase().contains(search.toLowerCase())
+            || literature.getAuthor().toLowerCase().contains(search.toLowerCase()))
             {
-                a += ("Title: " + book.getTitle() + ", Author: " 
-                    + book.getAuthor() + ". Price: " + book.getPrice() + ",-");
+                a += ("Title: " + literature.getTitle() + ", Author: " 
+                    + literature.getAuthor() + ". Price: " + literature.getPrice() + ",-");
                 found = true;
             }
         }
         if (!found)
         {
-            a += ("No books found searching for " + search + ".");
+            a += ("No literatures found searching for " + search + ".");
         }
 
         return a;
     }
 
     /**
-     * Removes the book from the list.
-     * @param bookTitle The title of the book you want to remove.
+     * Removes the literature from the list.
+     * @param literatureTitle The title of the literature you want to remove.
      */
-    public String removeBookFromList(String bookTitle)
+    public String removeLiteratureFromList(String literatureTitle)
     {
-        String removedBookTitle = null;
+        String removedLiteratureTitle = null;
         Boolean removed = false;
-        Iterator<Book> it = bookList.iterator();
+        Iterator<Literature> it = literatureList.iterator();
         while(it.hasNext())
         {
-            Book bookToRemove = it.next();
-            if(bookToRemove.getTitle().equals(bookTitle))
+            Literature literatureToRemove = it.next();
+            if(literatureToRemove.getTitle().equals(literatureTitle))
             {
-                removedBookTitle = ("Removed " + bookToRemove.getTitle() + ", by " 
-                    + bookToRemove.getAuthor() + " from our listings.");
+                removedLiteratureTitle = ("Removed " + literatureToRemove.getTitle() + ", by " 
+                    + literatureToRemove.getAuthor() + " from our listings.");
                 removed = true;
                 it.remove();
             }
         }
         if(!removed)
         {
-            removedBookTitle = ("There was no book with the title of " + bookTitle);
+            removedLiteratureTitle = ("There was no literature with the title of " + literatureTitle);
         }
 
-        return removedBookTitle;
+        return removedLiteratureTitle;
     }
 
 }
