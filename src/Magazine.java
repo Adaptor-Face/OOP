@@ -1,6 +1,7 @@
 
 /**
- * Holds which issue and the published date of a magazine
+ * Holds the title, number of pages, the cost, 
+ * issue number and the published date of a magazine
  *
  * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
  * @version 0.3, 2016-03-11
@@ -12,7 +13,8 @@ private final String datePublished;
         
 /** 
  * Creates a new magazine with the given title, number of pages, 
- * the publish date, the cost of the magazine and the name of the publisher.
+ * the publish date, which issue the magazine is, 
+ * the cost of the magazine and the name of the publisher.
  * @param issue Which issue the magazine is.
  * @param datePublished Publish date of the magazine.
 */
@@ -26,7 +28,19 @@ private final String datePublished;
    
    /**
     * Returns the issue number.
-    * @return the issue number.
+    * @return the issue number as an int.
     */
+   public int issue()
+   {
+       return issue;
+   }
    
+   /**
+    * Return the publish date of the magazine.
+    * @return the publish year of the magazine as a String
+    */
+   public String datePublished()
+   {
+       return datePublished;
+   }
         }
