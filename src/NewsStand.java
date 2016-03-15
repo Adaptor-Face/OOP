@@ -10,30 +10,29 @@ import java.util.ArrayList;
  */
 public class NewsStand 
 {
-    private LiteratureRegister books;
+    private LiteratureRegister literatureList;
     /**
      * 
      */
     public NewsStand() {
-        books = new LiteratureRegister();
+        literatureList = new LiteratureRegister();
     }
 
     /**
-     * Get list of all books in the register
+     * Get list of all literature in the register
      */
     public String getList() {
-        ArrayList<Book> literatureList = books.listAllBooks();
-        String listOfBooks = "";
-        for(Book book: literatureList)
+        ArrayList<Literature> literatureList = this.literatureList.listAllLiteratures();
+        String listOfliterature = "";
+        for(Literature literature: literatureList)
         {
-            listOfBooks += "Title: " + book.getTitle() + ", Author: " 
-                + book.getAuthor() + ", Price: " + book.getPrice() + ",-\n";
+            listOfliterature += literature.getInfo();
         }
-        if(listOfBooks.equals(""))
+        if(listOfliterature.equals(""))
         {
-            return "There are no books to list.";
+            return "There are no literature to list.";
         }
-        return listOfBooks;
+        return listOfliterature;
     }
     
     /**
@@ -46,10 +45,8 @@ public class NewsStand
      * @param price The price of the book in NOK.
      * @param publisher The name of the publisher of the book.
      */
-    public void addBookToList(String title, String author, int numberOfPages,
+    public void addLiteratureToList(String title, String author, int numberOfPages,
     int yearPublished, double price, String publisher) {
-        Book newBook = new Book(title, author, numberOfPages, yearPublished, price, publisher);
-        books.addNewBook(newBook);
     }
     
     /**
@@ -58,48 +55,48 @@ public class NewsStand
      * Returns a string explaining which book you removed
      * @return A string explaining which book you removed
      */
-    public String removeBook(String bookTitle) {
-        return books.removeBookFromList(bookTitle);
+    public String removeLiterature(String bookTitle) {
+        return "FIX ME! REMOVELITERATURE";
     }
     
     /**
-     * Search for books by title
+     * Search for literature by title
      * @param title Title of the book
      * Returns title of the book
      * @return title of the book
      */
-    public String searchBookByTitle(String title) {
-        return books.searchByTitle(title);
+    public String searchLiteratureByTitle(String title) {
+        return "FIX ME! SEARCH BY TITLE!";
     }
     
     /**
-     * Search for books written by given author
+     * Search for literature written by given author
      * @param authorName Name of the author 
-     * Returns books written by given author
-     * @return books written by given author
+     * Returns literature written by given author
+     * @return literature written by given author
      */
-    public String searchBooksByAuthor(String authorName) {
-        return books.searchAuthor(authorName);
+    public String searchliteratureByAuthor(String authorName) {
+        return "FIX ME! AUTHOR SEARCH!";
     }
     
     /**
-     * Search for books by publisher
+     * Search for literature by publisher
      * @param publisher Name of the publisher
-     * Returns books published by given publisher
-     * @return books published by given publisher
+     * Returns literature published by given publisher
+     * @return literature published by given publisher
      */
-    public String searchBookByPublisher(String publisher) {
-        return books.searchPublisher(publisher);
+    public String searchLiteratureByPublisher(String publisher) {
+        return "FIX ME! PUBLISHER SEARCH!";
     }
     
     /**
-     * Generic search for books
+     * Generic search for literature
      * @param search Generic searchword
-     * Returns books by given searchword
-     * @return books by given searchword
+     * Returns literature by given searchword
+     * @return literature by given searchword
      */
-    public String searchBookByAnything(String search) {
-        return books.genericSearch(search);
+    public String searchLiteratureByAnything(String search) {
+        return "FIX ME! GENERIC SEARCH!";
     }
 
 }

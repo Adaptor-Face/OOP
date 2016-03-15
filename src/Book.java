@@ -41,4 +41,30 @@ public class Book extends Literature
     {
         return yearPublished;
     }
+    public String getInfo()
+    {
+        String[] splitString = super.getInfo().split("\n");
+        String titleString = "", priceString = "";
+        for(String info : splitString)
+        {
+            if(info.contains("Title: "))
+            {
+                titleString = info;
+            }
+            if(info.contains("Price: "))
+            {
+                priceString = info;
+            }
+        }
+        String infoString = "";
+        if(priceString.equals("") && titleString.equals(""))
+        {
+            infoString += "There is nothing to show.";
+        } else
+        {
+        infoString += titleString + ", by: " + this.getAuthor() 
+                + "\n" + priceString;
+        }
+        return infoString;
+    }
 }

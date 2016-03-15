@@ -70,7 +70,7 @@ class NewsStandUI {
     public void removeBookFromList()
     {
         System.out.println("Enter the titel of the book you wish to remove");
-        System.out.println(newsStand.removeBook(reader.nextLine()));
+        System.out.println(newsStand.removeLiterature(reader.nextLine()));
     }
     
     /**
@@ -79,7 +79,7 @@ class NewsStandUI {
     public void searchForBookByTitle()
     {
         System.out.println("Enter the book title you wish to seach for");
-        System.out.println(newsStand.searchBookByTitle(reader.nextLine()));
+        System.out.println(newsStand.searchLiteratureByTitle(reader.nextLine()));
     }
 
     /**
@@ -139,7 +139,7 @@ class NewsStandUI {
         String publisher = reader.nextLine();
 
         System.out.println();
-        newsStand.addBookToList(title, author, pages, year, price, publisher);
+        newsStand.addLiteratureToList(title, author, pages, year, price, publisher);
     }
 
     /**

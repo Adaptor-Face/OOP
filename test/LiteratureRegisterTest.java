@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  */
 public class LiteratureRegisterTest
 {
-    private LiteratureRegister testRegister;
+    private LiteratureRegisterOLD testRegister;
     /**
      * Default constructor for test class LiteratureRegisterTest
      */
@@ -36,7 +36,7 @@ public class LiteratureRegisterTest
     @Before
     public void setUp()
     {
-        testRegister = new LiteratureRegister();
+        testRegister = new LiteratureRegisterOLD();
         testRegister.addNewBook(new Book("WORLD", "David Jones", 255, 2010, 19.99, "Volvo"));
         testRegister.addNewBook(new Book("Underground", "Jenny Garden", 200, 1999, 9.99, "Dom"));
         testRegister.addNewBook(new Book("Universe", "Steven Hawking", 650, 1699, 29.99, "Marvel"));
@@ -58,7 +58,7 @@ public class LiteratureRegisterTest
     @Test
     public void testRemoveBook()
     {
-        LiteratureRegister literatu1 = new LiteratureRegister();
+        LiteratureRegisterOLD literatu1 = new LiteratureRegisterOLD();
         literatu1.addNewBook(new Book("lol", "haha", 24, 2016, 123.5, "asbjørn"));
         assertEquals("Removed lol, by haha from our listings.", literatu1.removeBookFromList("lol"));
     }

@@ -16,10 +16,10 @@ public class Literature {
     /**
      * Creates a new book with the given title, author, number of pages, 
      * the publish year, the cost of the book and the name of the publisher.
-     * @param title The title of the literature.
-     * @param publisher The name of the publisher of the literature.
+     * @param title The title of the this.
+     * @param publisher The name of the publisher of the this.
      * @param numberOfPages Number of pages in the book.
-     * @param price The price of the literature in NOK.
+     * @param price The price of the this in NOK.
      */
     
     public Literature(String title, double price, String publisher, int numberOfPages)
@@ -73,5 +73,11 @@ public class Literature {
     public int getNumberOfPages()
     {
         return numberOfPages;
+    }
+    public String getInfo()
+    {
+        String infoString = "Title: " + this.getTitle() 
+                + "\nPrice: " + this.getPrice() + ",-";
+        return infoString;
     }
 }
