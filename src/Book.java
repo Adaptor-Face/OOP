@@ -41,8 +41,14 @@ public class Book extends Literature
     {
         return yearPublished;
     }
+    
+    /**
+     * Returns all info about the book.
+     * @return all info about the book.
+     */
     public String getInfo()
     {
+        //Splits the super string in to two stings for price and title.
         String[] splitString = super.getInfo().split("\n");
         String titleString = "", priceString = "";
         for(String info : splitString)
@@ -56,6 +62,7 @@ public class Book extends Literature
                 priceString = info;
             }
         }
+        //Handles the string and sets up the string to return
         String infoString = "";
         if(priceString.equals("") && titleString.equals(""))
         {
