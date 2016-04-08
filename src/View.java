@@ -8,17 +8,17 @@
  *
  * @author Asbjørn
  */
-public class LiteratureView {
+public class View {
     
     private Literature literature;
     
     
     /**
      * 
-     * @param literature The literature.
+     * 
      */
-    public LiteratureView(Literature literature) {
-        this.literature = literature;
+    public View() {
+        
         
     }
     /**
@@ -26,6 +26,7 @@ public class LiteratureView {
      * @return the title of the literature.
      */
     public String getTitle() {
+        
         return literature.getTitle();
     }
     
@@ -53,13 +54,14 @@ public class LiteratureView {
     public int getNumberOfPages() {
         return literature.getNumberOfPages();
     }
-    /**
-     * 
-     * @return the details of the literature.
-     */
     
-    public String printLiteratureDetails() {
-        return "Title: " + getTitle() + " Author: " + getPublisher() + " Price: "
-                + getPrice();
+    
+    /**
+     *@return the details of the literature.
+     */
+    public String getInfo(Literature literature) {
+        
     }
+    
+    
 }
