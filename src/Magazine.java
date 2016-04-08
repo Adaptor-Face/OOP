@@ -6,7 +6,7 @@
  * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
  * @version 0.3, 2016-03-11
  */
- public abstract class Magazine extends Literature 
+ public class Magazine extends Literature 
 {
 private final int issue;
 private final String datePublished;
