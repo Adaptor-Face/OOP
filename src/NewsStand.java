@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class NewsStand 
 {
-    private LiteratureRegister literatureList;
+    private final LiteratureRegister literatureList;
     /**
      * Creates an instance of the newsstand
      */
@@ -23,10 +23,10 @@ public class NewsStand
      * @return returns a list of all literature in the register as a string
      */
     public String getList() {
-        ArrayList<Literature> literatureList = this.literatureList.listAllLiteratures();
+        ArrayList<Literature> temporaryLiteratureList = this.literatureList.listAllLiteratures();
         String listOfliterature = "";
         LiteratureView view = new LiteratureView();
-        for(Literature literature: literatureList)
+        for(Literature literature: temporaryLiteratureList)
         {
             listOfliterature += view.getInfo(literature);
         }

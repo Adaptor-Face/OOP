@@ -214,13 +214,7 @@ public class InputHandler {
     {
     Scanner reader = new Scanner(System.in);
               String answer = reader.nextLine();
-        if (answer.toLowerCase().equals("yes"))
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return answer.toLowerCase().equals("yes");
     }
     
     /**
