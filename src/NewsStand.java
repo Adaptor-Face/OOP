@@ -51,13 +51,7 @@ public class NewsStand
      * @return A string explaining which book you removed
      */
     public Literature removeLiterature(String title) {
-        Literature literatureToRemove = null;
-        for (Literature literature : literatureList.listAllLiteratures())
-        {
-            if(literatureToRemove.getTitle().equals(title))
-               literatureToRemove = literature;
-        }
-        return literatureToRemove;
+        return literatureList.findLiterature(title);
     }
     
     /**
@@ -66,8 +60,8 @@ public class NewsStand
      * Returns title of the book
      * @return title of the book
      */
-    public String searchLiteratureByTitle(String title) {
-        return "FIX ME! SEARCH BY TITLE!";
+    public Literature searchLiteratureByTitle(String title) {
+        return literatureList.findLiterature(title);
     }
     
     /**

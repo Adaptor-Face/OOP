@@ -22,7 +22,7 @@ class NewsStandUI {
     public NewsStandUI() {
         //TODO: Replace "new Application" with your application class.
         this.newsStand = new NewsStand();
-        this input = new InputHandler();
+        this.input = new InputHandler();
     }
 
     /**
@@ -44,11 +44,11 @@ class NewsStandUI {
                     break;
 
                     case 3:
-                    searchForBookByTitle();
+                    searchByTitle();
                     break;
 
                     case 4:
-                    removeBookFromList();
+                    removeLiteratureFromList();
                     break;
 
                     case 5:
@@ -68,25 +68,30 @@ class NewsStandUI {
     /**
      * Remove a book from register
      */
-    public void removeBookFromList()
+    public void removeLiteratureFromList()
     {
-        Literature literature = input.remove()
-                if(literature == null)
-                {
-                    System.out.println("There was no literature with that title.");
-                } else if
-                        {
-                            
-                        }
+        System.out.println("Enter the titel of the book you wish to remove");
+        Literature literature = input.remove(newsStand);
+        if(literature == null)
+        {
+            System.out.println("There was no literature with that title.");
+        } else
+        {
+            if(input.makeCertain(literature))
+            {
+                System.out.println(literature.getTitle() + "was removed from the lists.");
+            }else
+                System.out.println(literature.getTitle() + "was not removed.");
+        }
     }
     
     /**
      * Search for a book by title
      */
-    public void searchForBookByTitle()
+    public void searchByTitle()
     {
         System.out.println("Enter the book title you wish to seach for");
-        System.out.println(newsStand.searchLiteratureByTitle(reader.nextLine()));
+        input.searchByTitle(newsStand);
     }
 
     /**
@@ -102,6 +107,9 @@ class NewsStandUI {
      */
     private void addNewBookToList()
     {
+        System.out.println("Enter the type of literature you want to add."
+                + "\nBook, Magazine or NewsPaper");
+        input.addLiterature();
     }
 
     /**

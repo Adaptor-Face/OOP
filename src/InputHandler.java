@@ -14,6 +14,10 @@ import java.util.Scanner;
 public class InputHandler {
     public InputHandler()
     {
+    }
+    
+    public Literature addLiterature()
+    {
         
     }
     public Literature addBook()
@@ -67,10 +71,29 @@ public class InputHandler {
         return bookToAdd;
     }
     
-    public void remove()
+    public Literature remove(NewsStand newsStand)
     {
     Scanner reader = new Scanner(System.in);
-        System.out.println("Enter the titel of the book you wish to remove");
-        System.out.println(newsStand.removeLiterature(reader.nextLine()));
+        return newsStand.removeLiterature(reader.nextLine());
+    }
+    
+    public boolean makeCertain(Literature literature)
+    {
+    Scanner reader = new Scanner(System.in);
+        System.out.println("Are you sure you want to remove: /n" + literature.getInfo() + "/nyes or no");
+        String answer = reader.nextLine();
+        if (answer.toLowerCase().equals("yes"))
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+    
+    public Literature searchByTitle(NewsStand newsStand)
+    {
+    Scanner reader = new Scanner(System.in);
+        return newsStand.searchLiteratureByTitle(reader.nextLine());
     }
 }

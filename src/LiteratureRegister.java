@@ -42,4 +42,17 @@ public class LiteratureRegister
         }
         return listToReturn;
     }
+    
+    public Literature findLiterature(String title)
+    {
+        Literature literatureToReturn = null;
+        for(Literature literature : literatureList)
+        {
+            if(literature.getTitle().toLowerCase().equals(title))
+            {
+                literatureToReturn = literature;
+            }
+        }
+        return literatureToReturn;
+    }
 }
