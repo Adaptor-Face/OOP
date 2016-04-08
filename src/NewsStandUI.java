@@ -71,6 +71,7 @@ class NewsStandUI {
      */
     public void removeLiteratureFromList()
     {
+        LiteratureView view = new LiteratureView();
         System.out.println("Enter the title of the book you wish to remove");
         Literature literature = input.remove(newsStand);
         if(literature == null)
@@ -78,7 +79,7 @@ class NewsStandUI {
             System.out.println("There was no literature with that title.");
         } else
         {  
-            System.out.println("Are you sure you want to remove: \n" + literature.getInfo() + "\nyes or no");
+            System.out.println("Are you sure you want to remove: \n" + view.getInfo(literature) + "\nyes or no");
             if(input.makeCertain())
             {
                 System.out.println(literature.getTitle() + " was removed from the lists.");
@@ -92,6 +93,7 @@ class NewsStandUI {
      */
     public void searchByTitle()
     {
+        LiteratureView view = new LiteratureView();
         System.out.println("Enter title to search for:");
         Literature foundLiterature = input.searchByTitle(newsStand);
         if(foundLiterature == null)
@@ -100,7 +102,7 @@ class NewsStandUI {
         }else
         {
             System.out.println("The following literature was found:");
-            System.out.println(foundLiterature.getInfo());
+            System.out.println(view.getInfo(foundLiterature));
         }
     }
 
