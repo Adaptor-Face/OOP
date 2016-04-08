@@ -35,9 +35,27 @@ public class NewsPaper extends Literature {
         return yearPublished;
     }
     
-   
+    /**
+     *
+     * @return lol
+     */
+    @Override
    public String getInfo()
    {
-       return "something";
+       NewsPaperView view = new NewsPaperView();
+        String infoString = view.getInfo(this);
+        return infoString;
    }
+   
+   /**
+     * Returns all info about the book.
+     * @return all info about the book.
+     */
+    @Override
+    public String getDetails()
+    {
+         NewsPaperView view = new NewsPaperView();
+        String infoString = view.getDetails(this);
+        return infoString;
+    }
 }

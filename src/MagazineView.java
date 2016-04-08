@@ -10,20 +10,28 @@
  */
 public class MagazineView {
     
-   private Magazine magazine;
+   
    
    
    /**
     * 
     */
-    public MagazineView(Magazine magazine) {
-        this.magazine = magazine;
+    public MagazineView() {
+        
     }
     
     /**
      * 
      */
-    public String getInfo() {
+    public String getInfo(Magazine magazine) {
+        return "Title: " + magazine.getTitle() + " Price: " + magazine.getPrice() 
+            + "\nPublisher: " + magazine.getPublisher();
+    }
+    
+    /**
+     * 
+     */
+     public String getDetails(Magazine magazine) {
         return "Title: " + magazine.getTitle() + " Price: " + magazine.getPrice() 
             + "\nNumber of pages: " + magazine.getNumberOfPages() + " Publisher: " + magazine.getPublisher();
     }
