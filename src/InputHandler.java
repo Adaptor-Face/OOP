@@ -168,14 +168,8 @@ public class InputHandler {
         }
 
         System.out.println();
-        System.out.println("Enter year the newspaper was published:");
-        int year = reader.nextInt();
-        while(year < 0)
-        {
-            System.out.println("ERROR: Year can not be negative!" 
-            + "\nEnter correct year");
-            year = reader.nextInt();
-        }
+        System.out.println("Enter publish date of the newspaper was published:");
+        String date = reader.nextLine();
 
         System.out.println();
         System.out.println("Enter price of the newspaper");
@@ -193,7 +187,7 @@ public class InputHandler {
         String publisher = reader.nextLine();
 
         System.out.println();
-        NewsPaper newsPaperToAdd = new NewsPaper(title, price, publisher, pages, year);
+        NewsPaper newsPaperToAdd = new NewsPaper(title, price, publisher, pages, date);
         return newsPaperToAdd;
     }
     

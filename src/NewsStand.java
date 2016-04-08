@@ -25,9 +25,10 @@ public class NewsStand
     public String getList() {
         ArrayList<Literature> literatureList = this.literatureList.listAllLiteratures();
         String listOfliterature = "";
+        LiteratureView view = new LiteratureView();
         for(Literature literature: literatureList)
         {
-            listOfliterature += literature.getInfo();
+            listOfliterature += view.getInfo(literature);
         }
         if(listOfliterature.equals(""))
         {

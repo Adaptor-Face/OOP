@@ -31,7 +31,7 @@ public class NewsPaper extends Literature {
      * Returns the date the newspaper was published
      * @return the date the newspaper was published
      */
-    public String getdate() {
+    public String getDate() {
         return date;
     }
     

@@ -29,7 +29,7 @@ public class NewsPaperView {
      * 
      */
     public String getDetails(NewsPaper newspaper) {
-        return "Title: " + newspaper.getTitle() + " Price: " + newspaper.getPrice() + "\nYear published: " + newspaper.getYearPublished()
+        return "Title: " + newspaper.getTitle() + " Price: " + newspaper.getPrice() + "\nYear published: " + newspaper.getDate()
                 + "\nNumber of pages: " + newspaper.getNumberOfPages() + " Publisher: " + newspaper.getPublisher();
     }
 }
