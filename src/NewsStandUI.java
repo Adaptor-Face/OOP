@@ -132,11 +132,11 @@ class NewsStandUI {
      * @throws InputMismatchException
      */
     private int showMenu() throws InputMismatchException {
-        System.out.println("\n**** Bookmaster 3000 ****\n");
-        System.out.println("1. List all books");
-        System.out.println("2. Add new book");
-        System.out.println("3. Find a book by title");
-        System.out.println("4. Remove a book by title");
+        System.out.println("\n**** LiteratureMaster 3000 ****\n");
+        System.out.println("1. List all literature");
+        System.out.println("2. Add new literature");
+        System.out.println("3. Find a literature by title");
+        System.out.println("4. Remove a literature by title");
         System.out.println("5. Exit");
         System.out.println("Please choose menu item (1-5): ");
 

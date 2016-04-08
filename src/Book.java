@@ -53,8 +53,20 @@ public class Book extends Literature
     @Override
     public String getInfo()
     {
-        String infoString = getTitle() + ", by: " + this.getAuthor() 
-                + "\n" + getPrice();
+        BookView view = new BookView();
+        String infoString = view.getInfo(this);
+        return infoString;
+    }
+    
+    /**
+     * Returns all info about the book.
+     * @return all info about the book.
+     */
+    @Override
+    public String getDetails()
+    {
+        BookView view = new BookView();
+        String infoString = view.getDetails(this);
         return infoString;
     }
 }
