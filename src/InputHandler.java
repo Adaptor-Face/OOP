@@ -209,15 +209,13 @@ public class InputHandler {
     }
     
     /**
-     * Check if user is sure they want to remove literature
-     * @param literature The literature to ask for
+     * Check if the user really want to remove the given literature
      * @return true or false 
      */
-    public boolean makeCertain(Literature literature)
+    public boolean makeCertain()
     {
     Scanner reader = new Scanner(System.in);
-        System.out.println("Are you sure you want to remove: \n" + literature.getInfo() + "\nyes or no");
-        String answer = reader.nextLine();
+              String answer = reader.nextLine();
         if (answer.toLowerCase().equals("yes"))
         {
             return true;
@@ -227,6 +225,11 @@ public class InputHandler {
         }
     }
     
+    /**
+     * Search literature by given title and returns it
+     * @param newsStand The newsStand
+     * @return the literature by given title 
+     */
     public Literature searchByTitle(NewsStand newsStand)
     {
     Scanner reader = new Scanner(System.in);

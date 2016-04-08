@@ -77,8 +77,9 @@ class NewsStandUI {
         {
             System.out.println("There was no literature with that title.");
         } else
-        {
-            if(input.makeCertain(literature))
+        {  
+            System.out.println("Are you sure you want to remove: \n" + literature.getInfo() + "\nyes or no");
+            if(input.makeCertain())
             {
                 System.out.println(literature.getTitle() + " was removed from the lists.");
             }else
