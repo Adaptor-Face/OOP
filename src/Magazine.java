@@ -47,4 +47,9 @@ private final String datePublished;
    {
        return datePublished;
    }
-        }
+   
+   public String getInfo()
+   {
+       return "something";
+   }
+}

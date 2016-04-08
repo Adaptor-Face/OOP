@@ -1,5 +1,7 @@
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -79,9 +81,9 @@ class NewsStandUI {
         {
             if(input.makeCertain(literature))
             {
-                System.out.println(literature.getTitle() + "was removed from the lists.");
+                System.out.println(literature.getTitle() + " was removed from the lists.");
             }else
-                System.out.println(literature.getTitle() + "was not removed.");
+                System.out.println(literature.getTitle() + " was not removed.");
         }
     }
     
@@ -90,8 +92,16 @@ class NewsStandUI {
      */
     public void searchByTitle()
     {
-        System.out.println("Enter the book title you wish to seach for");
-        input.searchByTitle(newsStand);
+        System.out.println("Enter title to search for:");
+        Literature foundLiterature = input.searchByTitle(newsStand);
+        if(foundLiterature == null)
+        {
+            System.out.println("Nothing found with that title");
+        }else
+        {
+            System.out.println("The following literature was found:");
+            System.out.println(foundLiterature.getInfo());
+        }
     }
 
     /**
@@ -109,7 +119,7 @@ class NewsStandUI {
     {
         System.out.println("Enter the type of literature you want to add."
                 + "\nBook, Magazine or NewsPaper");
-        input.addLiterature();
+        newsStand.addLiteratureToList(input.addLiterature());
     }
 
     /**

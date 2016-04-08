@@ -21,7 +21,7 @@ public abstract class NewsPaper extends Literature {
      * @param numberOfPages the number of pages in the newspaper.
      * @param yearPublished the year the newspaper was published in.
      */
-    public NewsPaper(String title, int price, String publisher, int numberOfPages,int yearPublished) {
+    public NewsPaper(String title, double price, String publisher, int numberOfPages,int yearPublished) {
         super(title, price, publisher, numberOfPages);
         this.yearPublished = yearPublished;
     }
@@ -35,4 +35,9 @@ public abstract class NewsPaper extends Literature {
         return yearPublished;
     }
     
+   
+   public String getInfo()
+   {
+       return "something";
+   }
 }
