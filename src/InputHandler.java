@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class InputHandler {
     
     /**
-     * 
+     * Creates a object responsible of managing input from the user
      */
     public InputHandler()
     {

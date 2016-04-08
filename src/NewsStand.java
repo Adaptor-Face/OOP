@@ -53,7 +53,7 @@ public class NewsStand
      * @return which book you removed as a string
      */
     public Literature removeLiterature(String title) {
-        return literatureList.findLiterature(title);
+       return literatureList.remove(title);
     }
     
     /**

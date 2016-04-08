@@ -29,6 +29,27 @@ public class LiteratureRegister
         literatureList.add(literature);
     }
     /**
+     * Prints out a list containing all literatures, complete with author name, title and price.
+     * @param literature The literature u want to add.
+     */
+    public Literature remove(String title)
+    {
+        Literature literatureToRemove = null;
+        for(Literature literature : literatureList)
+        {
+            if(literature.getTitle().toLowerCase().equals(title.toLowerCase()))
+            {
+                literatureToRemove = literature;
+            }
+        }
+        if(null != literatureToRemove);
+        {
+            Literature literatureToReturn = literatureToRemove;
+        literatureList.remove(literatureToRemove);
+        return literatureToReturn;
+        }
+    }
+    /**
      * Returns the list of literatures.
      * @return the list of literatures.
      */
@@ -52,7 +73,7 @@ public class LiteratureRegister
         Literature literatureToReturn = null;
         for(Literature literature : literatureList)
         {
-            if(literature.getTitle().toLowerCase().equals(title))
+            if(literature.getTitle().toLowerCase().contains(title.toLowerCase()))
             {
                 literatureToReturn = literature;
             }

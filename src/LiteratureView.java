@@ -8,7 +8,7 @@
 public class LiteratureView {
 
     /**
-     * 
+     * Creates a object responsible of generating information strings
      */
     public LiteratureView() {
     }
