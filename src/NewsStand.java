@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * currently only handles the book type literature.
  * 
  * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
- * @version 0.1, 2016-03-04
+ * @version 0.4, 2016-04-08
  */
 public class NewsStand 
 {

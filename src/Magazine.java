@@ -4,7 +4,7 @@
  * issue number and the published date of a magazine
  *
  * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
- * @version 0.3, 2016-03-11
+ * @version 0.4, 2016-04-08
  */
  public class Magazine extends Literature 
 {
