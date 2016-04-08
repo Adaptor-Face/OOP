@@ -8,7 +8,7 @@
  *
  * @author Face
  */
-public class Literature {
+public abstract class Literature {
     private final String title;
     private double price;
     private final String publisher;
@@ -74,10 +74,5 @@ public class Literature {
     {
         return numberOfPages;
     }
-    public String getInfo()
-    {
-        String infoString = "Title: " + this.getTitle() 
-                + "\nPrice: " + this.getPrice() + ",-";
-        return infoString;
-    }
+    public abstract String getInfo();
 }

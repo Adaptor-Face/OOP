@@ -25,17 +25,9 @@ public class LiteratureRegister
     /**
      * Prints out a list containing all literatures, complete with author name, title and price.
      */
-    public void listAllLiterature()
+    public void add(Literature literature)
     {
-    System.out.println();
-    if (literatureList.size() <= 0)
-    {
-        System.out.println("There is no literatures.");
-    }
-    for(Literature literature : literatureList)
-    {
-        System.out.println(literature.getInfo());
-    }
+        literatureList.add(literature);
     }
     /**
      * Returns the list of literatures.

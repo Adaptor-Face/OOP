@@ -38,15 +38,10 @@ public class NewsStand
     /**
      * Add new book to register with given title, author, number of pages, 
      * the publish year, the cost of the book and the name of the publisher.
-     * @param title The title of the book.
-     * @param author The name of the author.
-     * @param numberOfPages Number of pages in the book.
-     * @param yearPublished Pubilsh year of the book.
-     * @param price The price of the book in NOK.
-     * @param publisher The name of the publisher of the book.
+     * @param literature The literature to add to the lists.
      */
-    public void addLiteratureToList(String title, String author, int numberOfPages,
-    int yearPublished, double price, String publisher) {
+    public void addLiteratureToList(Literature literature) {
+        literatureList.add(literature);
     }
     
     /**
@@ -55,8 +50,14 @@ public class NewsStand
      * Returns a string explaining which book you removed
      * @return A string explaining which book you removed
      */
-    public String removeLiterature(String bookTitle) {
-        return "FIX ME! REMOVELITERATURE";
+    public Literature removeLiterature(String title) {
+        Literature literatureToRemove = null;
+        for (Literature literature : literatureList.listAllLiteratures())
+        {
+            if(literatureToRemove.getTitle().equals(title))
+               literatureToRemove = literature;
+        }
+        return literatureToRemove;
     }
     
     /**

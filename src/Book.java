@@ -48,30 +48,8 @@ public class Book extends Literature
      */
     public String getInfo()
     {
-        //Splits the super string in to two stings for price and title.
-        String[] splitString = super.getInfo().split("\n");
-        String titleString = "", priceString = "";
-        for(String info : splitString)
-        {
-            if(info.contains("Title: "))
-            {
-                titleString = info;
-            }
-            if(info.contains("Price: "))
-            {
-                priceString = info;
-            }
-        }
-        //Handles the string and sets up the string to return
-        String infoString = "";
-        if(priceString.equals("") && titleString.equals(""))
-        {
-            infoString += "There is nothing to show.";
-        } else
-        {
-        infoString += titleString + ", by: " + this.getAuthor() 
-                + "\n" + priceString;
-        }
+        String infoString = getTitle() + ", by: " + this.getAuthor() 
+                + "\n" + getPrice();
         return infoString;
     }
 }
