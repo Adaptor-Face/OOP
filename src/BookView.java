@@ -10,20 +10,27 @@
  */
 public class BookView {
     
-    private Book book;
     
     /**
      * 
      */
-    public BookView(Book book) {
-        this.book = book;
+    public BookView() {
     }
     
     /**
      * 
      * @return the details of the book.
      */
-    public String getInfo() {
+    public String getInfo(Book book) {
+        return "Title: " + book.getTitle() + " Author: " + book.getAuthor()
+                + "\nPrice: " + book.getPrice();
+    }
+    
+    /**
+     * 
+     * @return the details of the book.
+     */
+    public String getDetails(Book book) {
         return "Title: " + book.getTitle() + " Author: " + book.getAuthor()
                 + "\nPrice: " + book.getPrice() + "Year published: " + book.getYearPublished()
                 + "\nNumber of pages: " + book.getNumberOfPages() + " Publisher: " + book.getPublisher();

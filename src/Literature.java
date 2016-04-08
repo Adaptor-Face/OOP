@@ -75,4 +75,5 @@ public abstract class Literature {
         return numberOfPages;
     }
     public abstract String getInfo();
+    public abstract String getDetails();
 }

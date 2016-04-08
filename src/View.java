@@ -8,7 +8,7 @@
  *
  * @author Asbjørn
  */
-public class View {
+public abstract class View {
     
     private Literature literature;
     
@@ -59,9 +59,7 @@ public class View {
     /**
      *@return the details of the literature.
      */
-    public String getInfo(Literature literature) {
-        
-    }
+    public abstract String getInfo(Literature literature);
     
     
 }
