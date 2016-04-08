@@ -18,8 +18,8 @@ public class BookView {
     }
     
     /**
-     * 
-     * @return the details of the book.
+     * Returns information of the book
+     * @return information of the book.
      */
     public String getInfo(Book book) {
         return "Title: " + book.getTitle() + " Author: " + book.getAuthor()
@@ -27,8 +27,8 @@ public class BookView {
     }
     
     /**
-     * 
-     * @return the details of the book.
+     * Returns details of the book
+     * @return details of the book.
      */
     public String getDetails(Book book) {
         return "Title: " + book.getTitle() + " Author: " + book.getAuthor()

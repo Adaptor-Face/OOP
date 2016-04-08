@@ -10,7 +10,7 @@
  */
 public class NewsPaper extends Literature {
     
-    private final int yearPublished;
+    private final String date;
     
     
     /**
@@ -19,25 +19,25 @@ public class NewsPaper extends Literature {
      * @param price of newspaper.
      * @param publisher name of publisher.
      * @param numberOfPages the number of pages in the newspaper.
-     * @param yearPublished the year the newspaper was published in.
+     * @param date the date the newspaper was published in.
      */
-    public NewsPaper(String title, double price, String publisher, int numberOfPages,int yearPublished) {
+    public NewsPaper(String title, double price, String publisher, int numberOfPages,String date) {
         super(title, price, publisher, numberOfPages);
-        this.yearPublished = yearPublished;
+        this.date = date;
     }
     
     
     /**
-     * returns the year the newspaper was published
-     * @return the year the newspaper was published
+     * Returns the date the newspaper was published
+     * @return the date the newspaper was published
      */
-    public int getYearPublished() {
-        return yearPublished;
+    public String getdate() {
+        return date;
     }
     
     /**
-     *
-     * @return lol
+     * Returns information of the newspaper
+     * @return information of the newspaper
      */
     @Override
    public String getInfo()
@@ -48,7 +48,7 @@ public class NewsPaper extends Literature {
    }
    
    /**
-     * Returns all info about the book.
+     * Returns details about the book.
      * @return all info about the book.
      */
     @Override
