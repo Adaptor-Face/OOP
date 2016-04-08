@@ -12,7 +12,7 @@ public abstract class Literature {
     private final String title;
     private double price;
     private final String publisher;
-    private int numberOfPages;
+    private final int numberOfPages;
     /**
      * Creates a new book with the given title, author, number of pages, 
      * the publish year, the cost of the book and the name of the publisher.
@@ -23,7 +23,7 @@ public abstract class Literature {
      */
     
     public Literature(String title, double price, String publisher, int numberOfPages)
-    {
+    { 
         this.title = title;
         this.price = price;
         this.publisher = publisher;

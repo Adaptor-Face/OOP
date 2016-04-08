@@ -15,6 +15,10 @@ public class Book extends Literature
      * the publish year, the cost of the book and the name of the publisher.
      * @param author The name of the author.
      * @param yearPublished Pubilsh year of the book.
+     * @param title The title of the book.
+     * @param numberOfPages The number of pages in the book.
+     * @param price The price of the book.
+     * @param publisher The publisher of the book.
      */
     public Book(String title, String author, int numberOfPages, 
     int yearPublished, double price, String publisher)
@@ -46,6 +50,7 @@ public class Book extends Literature
      * Returns all info about the book.
      * @return all info about the book.
      */
+    @Override
     public String getInfo()
     {
         String infoString = getTitle() + ", by: " + this.getAuthor() 

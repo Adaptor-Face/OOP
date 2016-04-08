@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
+
 /**
  * Holds the list of literatures.
  * You are able to print out the list alphabeticaly or by price
@@ -24,6 +22,7 @@ public class LiteratureRegister
     }
     /**
      * Prints out a list containing all literatures, complete with author name, title and price.
+     * @param literature The literature u want to add.
      */
     public void add(Literature literature)
     {

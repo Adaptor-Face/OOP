@@ -8,7 +8,7 @@
  *
  * @author Asbjørn
  */
-public class NewsPaper extends Literature {
+public abstract class NewsPaper extends Literature {
     
     private final int yearPublished;
     

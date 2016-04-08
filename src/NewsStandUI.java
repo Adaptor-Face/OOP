@@ -70,7 +70,7 @@ class NewsStandUI {
      */
     public void removeLiteratureFromList()
     {
-        System.out.println("Enter the titel of the book you wish to remove");
+        System.out.println("Enter the title of the book you wish to remove");
         Literature literature = input.remove(newsStand);
         if(literature == null)
         {

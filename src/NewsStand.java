@@ -20,6 +20,7 @@ public class NewsStand
 
     /**
      * Get list of all literature in the register
+     * @return returns a list of all literature in the register.
      */
     public String getList() {
         ArrayList<Literature> literatureList = this.literatureList.listAllLiteratures();
@@ -46,7 +47,7 @@ public class NewsStand
     
     /**
      * Remove a book from the register
-     * @param bookTitle Title of the book
+     * @param title Title of the book
      * Returns a string explaining which book you removed
      * @return A string explaining which book you removed
      */

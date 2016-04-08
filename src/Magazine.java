@@ -6,7 +6,7 @@
  * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
  * @version 0.3, 2016-03-11
  */
-public class Magazine extends Literature 
+ public abstract class Magazine extends Literature 
 {
 private final int issue;
 private final String datePublished;
@@ -17,6 +17,10 @@ private final String datePublished;
  * the cost of the magazine and the name of the publisher.
  * @param issue Which issue the magazine is.
  * @param datePublished Publish date of the magazine.
+ * @param title title of the magazine.
+ * @param price price of the magazine.
+ * @param publisher the publisher of the magazine.
+ * @param numberOfPages the number of pages in the magazine.
 */
    public Magazine(String title, double price, String publisher, int numberOfPages, 
            int issue, String datePublished)
