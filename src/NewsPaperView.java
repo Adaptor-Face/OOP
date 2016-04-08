@@ -9,19 +9,26 @@
  * @author Asbjørn
  */
 public class NewsPaperView {
-    private NewsPaper newspaper;
+   
     
     /**
-     * @param newspaper the newspaper.
+     * 
      */
-    public NewsPaperView(NewsPaper newspaper) {
-        this.newspaper = newspaper;
+    public NewsPaperView() {
+        
     }
     
     /**
      * 
      */
-    public String getInfo() {
+    public String getInfo(NewsPaper newspaper) {
+        return "Title: " + newspaper.getTitle() + " Price: " + newspaper.getPrice() + "\nPublisher: " + newspaper.getPublisher();
+    }
+    
+     /**
+     * 
+     */
+    public String getDetails(NewsPaper newspaper) {
         return "Title: " + newspaper.getTitle() + " Price: " + newspaper.getPrice() + "\nYear published: " + newspaper.getYearPublished()
                 + "\nNumber of pages: " + newspaper.getNumberOfPages() + " Publisher: " + newspaper.getPublisher();
     }

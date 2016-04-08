@@ -47,9 +47,26 @@ private final String datePublished;
    {
        return datePublished;
    }
-   
+   /**
+    * 
+    * @return 
+    */
+@Override
    public String getInfo()
    {
-       return "something";
+      MagazineView view = new MagazineView();
+        String infoString = view.getInfo(this);
+        return infoString;
    }
+   /**
+    * 
+    * @return 
+    */
+@Override
+   public String getDetails()
+    {
+        MagazineView view = new MagazineView();
+        String infoString = view.getDetails(this);
+        return infoString;
+    }
 }
