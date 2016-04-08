@@ -193,7 +193,7 @@ public class InputHandler {
     public boolean makeCertain(Literature literature)
     {
     Scanner reader = new Scanner(System.in);
-        System.out.println("Are you sure you want to remove: \n" + literature.getInfo() + "\nnyes or no");
+        System.out.println("Are you sure you want to remove: \n" + literature.getInfo() + "\nyes or no");
         String answer = reader.nextLine();
         if (answer.toLowerCase().equals("yes"))
         {
