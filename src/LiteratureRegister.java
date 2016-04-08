@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Generic search searches within author, title and publisher. 
  * 
  * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
- * @version 0.2, 2016-03-04
+ * @version 0.4, 2016-04-08
  */
 public class LiteratureRegister
 {

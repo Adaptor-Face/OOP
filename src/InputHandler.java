@@ -1,21 +1,22 @@
 
 import java.util.Scanner;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Handles all input from the user
+ * 
+ * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
+ * @version 0.4, 2016-04-08
  */
 
-/**
- *
- * @author Kristoffer Rogne
- */
 public class InputHandler {
     public InputHandler()
     {
     }
     
+    /**
+     * Add literature of the given type and returns it.
+     * @return the literature of the given type
+     */
     public Literature addLiterature()
     {
     Scanner reader = new Scanner(System.in);
@@ -35,6 +36,10 @@ public class InputHandler {
         }
         return literatureToReturn;
     }
+    /**
+     * Creates a new book and returns it
+     * @return the new book created
+     */
     private Book addBook()
     {
     Scanner reader = new Scanner(System.in);
@@ -86,6 +91,10 @@ public class InputHandler {
         return bookToAdd;
     }
     
+    /**
+     * Create a new magazine and returns it
+     * @return the new magazine created
+     */
     private Magazine addMagazine()
     {
     Scanner reader = new Scanner(System.in);
@@ -137,6 +146,10 @@ public class InputHandler {
         return magazineToAdd;
     }
 
+    /**
+     * Create a new newspaper and returns it
+     * @return the new newspaper created
+     */
     private NewsPaper addNewsPaper() 
     {
     Scanner reader = new Scanner(System.in);
@@ -184,12 +197,22 @@ public class InputHandler {
         return newsPaperToAdd;
     }
     
+    /**
+     * Remove literature of the given type and returns it
+     * @param newsStand The newsStand
+     * @return the literature of the given type
+     */
     public Literature remove(NewsStand newsStand)
     {
     Scanner reader = new Scanner(System.in);
         return newsStand.removeLiterature(reader.nextLine());
     }
     
+    /**
+     * Check if user is sure they want to remove literature
+     * @param literature The literature to ask for
+     * @return true or false 
+     */
     public boolean makeCertain(Literature literature)
     {
     Scanner reader = new Scanner(System.in);

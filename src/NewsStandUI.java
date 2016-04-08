@@ -1,8 +1,7 @@
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
+
 
 /**
  * Makes up the user interface (text based) of the newsstand.
@@ -10,7 +9,7 @@ import java.util.Scanner;
  * and receiving input from the user.
  * 
  * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
- * @version 0.1, 2016-03-04
+ * @version 0.4, 2016-04-08
  */
 class NewsStandUI {
 
