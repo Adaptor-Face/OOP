@@ -83,6 +83,7 @@ class NewsStandUI {
             if(input.makeCertain())
             {
                 System.out.println(literature.getTitle() + " was removed from the lists.");
+                newsStand.removeLiterature(literature.getTitle());
             }else
                 System.out.println(literature.getTitle() + " was not removed.");
         }

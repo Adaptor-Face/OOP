@@ -9,6 +9,10 @@ import java.util.Scanner;
  */
 
 public class InputHandler {
+    
+    /**
+     * 
+     */
     public InputHandler()
     {
     }

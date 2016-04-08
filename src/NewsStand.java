@@ -12,7 +12,7 @@ public class NewsStand
 {
     private LiteratureRegister literatureList;
     /**
-     * 
+     * Creates an instance of the newsstand
      */
     public NewsStand() {
         literatureList = new LiteratureRegister();

@@ -42,6 +42,11 @@ public class LiteratureRegister
         return listToReturn;
     }
     
+    /**
+     * Find literature searching by title
+     * @param title Title of the literature
+     * @return the literature you find as a string
+     */
     public Literature findLiterature(String title)
     {
         Literature literatureToReturn = null;
