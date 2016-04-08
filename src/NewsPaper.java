@@ -1,19 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * Holds the title, number of pages, the cost, 
+ * and the published date of the newspaper
  *
- * @author Asbjørn
+ * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
+ * @version 0.4, 2016-04-08
  */
 public class NewsPaper extends Literature {
     
     private final String date;
     
-    
-    /**
+     /**
      * Creates an object of type NewsPaper.
      * @param title title of newspaper.
      * @param price of newspaper.
@@ -29,7 +25,7 @@ public class NewsPaper extends Literature {
     
     /**
      * Returns the date the newspaper was published
-     * @return the date the newspaper was published
+     * @return the date the newspaper was published as a string
      */
     public String getDate() {
         return date;

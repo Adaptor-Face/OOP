@@ -20,7 +20,7 @@ public class NewsStand
 
     /**
      * Get list of all literature in the register
-     * @return returns a list of all literature in the register.
+     * @return returns a list of all literature in the register as a string
      */
     public String getList() {
         ArrayList<Literature> literatureList = this.literatureList.listAllLiteratures();
@@ -50,7 +50,7 @@ public class NewsStand
      * Remove a book from the register
      * @param title Title of the book
      * Returns a string explaining which book you removed
-     * @return A string explaining which book you removed
+     * @return which book you removed as a string
      */
     public Literature removeLiterature(String title) {
         return literatureList.findLiterature(title);
@@ -60,7 +60,7 @@ public class NewsStand
      * Search for literature by title
      * @param title Title of the book
      * Returns title of the book
-     * @return title of the book
+     * @return title of the book as a string
      */
     public Literature searchLiteratureByTitle(String title) {
         return literatureList.findLiterature(title);
@@ -69,7 +69,7 @@ public class NewsStand
     /**
      * Search for literature written by given author
      * @param authorName Name of the author 
-     * Returns literature written by given author
+     * Returns literature written by given author 
      * @return literature written by given author
      */
     public String searchliteratureByAuthor(String authorName) {

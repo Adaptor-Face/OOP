@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Face
+ * Is a string generator 
+ * 
+ * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
+ * @version 0.4, 2016-04-08
  */
 public class LiteratureView {
     public LiteratureView()
             {
                 
             }
-            
+            /**
+             * Generating a string with information of given literature type
+             * @param literature The literature you want to generate information string from
+             * @return a string containing information from the given literature
+             */
     public String getInfo(Literature literature) {
         String stringToReturn = "Nothing to see here, move along.";
         if(literature instanceof Book)
@@ -33,6 +33,11 @@ public class LiteratureView {
         }
         return stringToReturn;
     }
+    /**
+     * Generating a string with all information of given literature type
+     * @param literature The literature you want to generate information string from
+     * @return a string containing all information from the given literature
+     */
     public String getDetails(Literature literature) {
         String stringToReturn = "Nothing to see here, move along.";
         if(literature instanceof Book)
