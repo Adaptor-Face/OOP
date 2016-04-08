@@ -34,7 +34,7 @@ public class LiteratureRegister
      */
     public ArrayList<Literature> listAllLiteratures()
     {
-        ArrayList<Literature> listToReturn = new ArrayList<Literature>();
+        ArrayList<Literature> listToReturn = new ArrayList<>();
         for(Literature literature : literatureList)
         {
            listToReturn.add(literature);
