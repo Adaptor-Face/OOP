@@ -7,7 +7,7 @@
  */
 public class NewsPaper extends Literature {
     
-    private final String date;
+    private final String datePublished;
     
      /**
      * Creates an object of type NewsPaper.
@@ -17,9 +17,9 @@ public class NewsPaper extends Literature {
      * @param numberOfPages the number of pages in the newspaper.
      * @param date the date the newspaper was published in.
      */
-    public NewsPaper(String title, double price, String publisher, int numberOfPages,String date) {
+    public NewsPaper(String title, double price, String publisher, int numberOfPages,String datePublished) {
         super(title, price, publisher, numberOfPages);
-        this.date = date;
+        this.datePublished = datePublished;
     }
     
     
@@ -27,7 +27,7 @@ public class NewsPaper extends Literature {
      * Returns the date the newspaper was published
      * @return the date the newspaper was published as a string
      */
-    public String getDate() {
-        return date;
+    public String getDatePublished() {
+        return datePublished;
     }
 }

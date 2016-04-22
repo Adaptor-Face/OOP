@@ -57,7 +57,7 @@ public class LiteratureView {
                     + "\nNumber of pages: " + magazine.getNumberOfPages() + " Publisher: " + magazine.getPublisher();
         } else if (literature instanceof NewsPaper) {
             NewsPaper newsPaper = (NewsPaper) literature;
-            stringToReturn = "Title: " + newsPaper.getTitle() + " Price: " + newsPaper.getPrice() + "\nYear published: " + newsPaper.getDate()
+            stringToReturn = "Title: " + newsPaper.getTitle() + " Price: " + newsPaper.getPrice() + "\nYear published: " + newsPaper.getDatePublished()
                     + "\nNumber of pages: " + newsPaper.getNumberOfPages() + " Publisher: " + newsPaper.getPublisher();
         }
         return stringToReturn;

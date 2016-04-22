@@ -70,7 +70,7 @@ class NewsStandUI {
     public void removeLiteratureFromList()
     {
         Scanner reader = new Scanner(System.in);
-        LiteratureView view = new LiteratureView();
+        StringFactory builder = new StringFactory();
         System.out.println("Enter the title of the book you wish to remove");
         Literature literature = newsStand.removeLiterature(reader.nextLine());
         if(literature == null)
@@ -78,7 +78,7 @@ class NewsStandUI {
             System.out.println("There was no literature with that title.");
         } else
         {  
-            System.out.println("Are you sure you want to remove: \n" + view.getInfo(literature) + "\nyes or no");
+            System.out.println("Are you sure you want to remove: \n" + builder.getInfo(literature) + "\nyes or no");
             if(makeCertain())
             {
                 System.out.println(literature.getTitle() + " was removed from the lists.");
@@ -94,7 +94,7 @@ class NewsStandUI {
     public void searchByTitle()
     {
         Scanner reader = new Scanner(System.in);
-        LiteratureView view = new LiteratureView();
+        StringFactory builder = new StringFactory();
         System.out.println("Enter title to search for:");
         Literature foundLiterature = newsStand.searchLiteratureByTitle(reader.nextLine());
         if(foundLiterature == null)
@@ -103,7 +103,7 @@ class NewsStandUI {
         }else
         {
             System.out.println("The following literature was found:");
-            System.out.println(view.getInfo(foundLiterature));
+            System.out.println(builder.getInfo(foundLiterature));
         }
     }
 
