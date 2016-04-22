@@ -1,4 +1,6 @@
+import java.util.Optional;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
@@ -23,6 +25,9 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 /**
  * Demonstrates the use of menus in JavaFX.
@@ -101,6 +106,16 @@ public class NewsStandApplication extends Application {
         menuFile.getItems().addAll(openFile, printFile);
         menuFile.getItems().add(new SeparatorMenuItem());
         menuFile.getItems().add(exitApp);
+        
+         
+        exitApp.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                doExitApplication();
+            }
+        });
 
         // Add event handler
         openFile.setOnAction(new EventHandler<ActionEvent>() {
@@ -138,4 +153,27 @@ public class NewsStandApplication extends Application {
 
         return grid;
     }
+    
+    /**
+     * Exit the application. Displays a confirmation dialog.
+     */
+    private void doExitApplication()
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Exit Application ?");
+        alert.setContentText("Are you sure you want to exit this application?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK)
+        {
+            // ... user chose OK
+            Platform.exit();
+        } else
+        {
+            // ... user chose CANCEL or closed the dialog
+            // then do nothing.
+        }
    }
+}
