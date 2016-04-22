@@ -27,6 +27,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
 /**
@@ -201,6 +202,49 @@ public class NewsStandApplication extends Application {
     }
 
     private void doAddLiterature() {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Add Literature");
+        alert.setHeaderText("What type of literature to add?");
 
+        ButtonType addBookBtn = new ButtonType("Book");
+        ButtonType addMagazineBtn = new ButtonType("Magazine");
+        ButtonType addNewsPaperBtn = new ButtonType("NewsPaper");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        
+        alert.getButtonTypes().setAll(addBookBtn, addMagazineBtn, addNewsPaperBtn, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == addBookBtn)
+        {
+            doAddBook();
+        } else if (result.get() == addMagazineBtn)
+        {
+            doAddMagazine();
+        } else if (result.get() == addNewsPaperBtn)
+        {
+            doAddNewsPaper();
+        } 
+    }
+
+    private void doAddBook() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void doAddMagazine() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void doAddNewsPaper() {
+        NewspaperDetailsDialog npDialog = new NewspaperDetailsDialog();
+
+        Optional<Newspaper> result = npDialog.showAndWait();
+
+        if (result.isPresent())
+        {
+            NewsPaper newspaper = result.get();
+            litReg.addLiterature(newspaper);
+            updateObservableList();
+            System.out.println("Number of items in litReg: " + litReg.getSize());
+        }
     }
 }
