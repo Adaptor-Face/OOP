@@ -1,6 +1,7 @@
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
@@ -39,6 +40,11 @@ public class NewsStandApplication extends Application {
      * Register containing the Literature. This reg is non-JavaFX-specific.
      */
     private LiteratureRegister literatureList;
+    /**
+     * An ObservableList used to "wrap" the real register to enable the link
+     * between the TableView and the LiteratureRegister.
+     */
+    private ObservableList<Literature> literatures;
     /**
      * The start-method is called by the JavaFX platform upon starting the
      * JavaFX-platform. The method is abstract and must be overridden by any
@@ -258,8 +264,19 @@ public class NewsStandApplication extends Application {
         if (result.isPresent())
         {
             NewsPaper newspaper = result.get();
+            System.out.println(newspaper.getPrice());
             literatureList.add(newspaper);
         }
+    }
+
+    /**
+     * Updates the ObservableArray wrapper with the current content in the
+     * Literature register. Call this method whenever changes are made to the
+     * underlying LiteratureRegister.
+     */
+    private void updateObservableList()
+    {
+        this.literatures.setAll(this.literatureList.listAllLiteratures());
     }
 
     /**

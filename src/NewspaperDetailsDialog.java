@@ -46,11 +46,11 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
         TextField publisher = new TextField();
         publisher.setPromptText("Publisher");
 
-        TextField issueNoTxt = new TextField();
-        issueNoTxt.setPromptText("Issue number");
+        TextField numberOfPagesTxt = new TextField();
+        numberOfPagesTxt.setPromptText("Number of pages");
 
         // Prevent characters (non-integers) to be added
-        issueNoTxt.textProperty().addListener(new ChangeListener<String>()
+        numberOfPagesTxt.textProperty().addListener(new ChangeListener<String>()
         {
             @Override
             public void changed(ObservableValue<? extends String> observable,
@@ -64,15 +64,15 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
                     }
                 } catch (NumberFormatException e)
                 {
-                    issueNoTxt.setText(oldValue);
+                    numberOfPagesTxt.setText(oldValue);
                 }
             }
         });
 
-        TextField totalNoOfIssuesTxt = new TextField();
-        totalNoOfIssuesTxt.setPromptText("Total number of issues");
+        TextField priceTxt = new TextField();
+        priceTxt.setPromptText("Price");
         // Prevent characters (non-integers) to be added
-        totalNoOfIssuesTxt.textProperty().addListener(new ChangeListener<String>()
+        priceTxt.textProperty().addListener(new ChangeListener<String>()
         {
             @Override
             public void changed(ObservableValue<? extends String> observable,
@@ -82,23 +82,27 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
                 {
                     if (newValue.length() > 0)
                     {
-                        Integer.parseInt(newValue);
+                        Double.parseDouble(newValue);
                     }
                 } catch (NumberFormatException e)
                 {
-                    totalNoOfIssuesTxt.setText(oldValue);
+                    priceTxt.setText(oldValue);
                 }
             }
         });
+        TextField datePublished = new TextField();
+        datePublished.setPromptText("Date Published");
 
         grid.add(new Label("Title:"), 0, 0);
         grid.add(title, 1, 0);
         grid.add(new Label("Publisher:"), 0, 1);
         grid.add(publisher, 1, 1);
-        grid.add(new Label("Issue number:"), 0, 2);
-        grid.add(issueNoTxt, 1, 2);
-        grid.add(new Label("Number of issues pr year:"), 0, 3);
-        grid.add(totalNoOfIssuesTxt, 1, 3);
+        grid.add(new Label("Number of pages:"), 0, 2);
+        grid.add(numberOfPagesTxt, 1, 2);
+        grid.add(new Label("Price:"), 0, 3);
+        grid.add(priceTxt, 1, 3);
+        grid.add(new Label("Date Published:"), 0, 4);
+        grid.add(datePublished, 1, 4);
 
         getDialogPane().setContent(grid);
 
@@ -110,9 +114,9 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
             {
                 if (button == ButtonType.OK)
                 {
-                    int issueNo = Integer.parseInt(issueNoTxt.getText());
-                    int totalIssues = Integer.parseInt(totalNoOfIssuesTxt.getText());
-                    return new NewsPaper(title.getText(), 15.99, publisher.getText(), issueNo, "test");
+                    int numberOfPages = Integer.parseInt(numberOfPagesTxt.getText());
+                    double price = Double.parseDouble(priceTxt.getText());
+                    return new NewsPaper(title.getText(), price, publisher.getText(), numberOfPages, datePublished.getText());
                 }
                 return null;
             }
