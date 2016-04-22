@@ -34,7 +34,7 @@ private final String datePublished;
     * Returns the issue number.
     * @return the issue number as an int.
     */
-   public int issue()
+   public int getIssue()
    {
        return issue;
    }
@@ -43,7 +43,7 @@ private final String datePublished;
     * Return the publish date of the magazine.
     * @return the publish year of the magazine as a String
     */
-   public String datePublished()
+   public String getDatePublished()
    {
        return datePublished;
    }
