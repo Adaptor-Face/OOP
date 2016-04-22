@@ -30,6 +30,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
 
 /**
  * Demonstrates the use of menus in JavaFX.
@@ -292,6 +293,18 @@ public class NewsStandApplication extends Application {
                 + "v0.4000");
 
         alert.showAndWait();
+    }
+    
+    private void doRemoveLiterature() {
+        
+        TextInputDialog dialog = new TextInputDialog("Title");
+        
+        dialog.setTitle("Remove a book");
+        dialog.setHeaderText("Enter title of the book");
+        
+        result.ifPresent(name -> NewsStand.removeLiterature(textField));
+        
+        
     }
 }
     
