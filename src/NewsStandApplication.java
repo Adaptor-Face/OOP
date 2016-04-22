@@ -1,3 +1,4 @@
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 
 /**
  * Demonstrates the use of menus in JavaFX.
@@ -112,9 +114,19 @@ public class NewsStandApplication extends Application {
         });
 
         Menu menuEdit = new Menu("Edit");
-        Menu menuAbout = new Menu("About");
 
-        menuBar.getMenus().addAll(menuFile, menuEdit, menuAbout);
+        // The Help-menu
+        Menu menuHelp = new Menu("Help");
+        MenuItem about = new MenuItem("About");
+        about.setOnAction(new EventHandler<ActionEvent>() 
+        {
+            @Override
+            public void handle(ActionEvent event) {
+                doShowAboutDialog();
+            }
+        });
+        menuHelp.getItems().add(about);
+        menuBar.getMenus().addAll(menuFile, menuEdit, menuHelp);
 
         return menuBar;
     }
@@ -135,7 +147,21 @@ public class NewsStandApplication extends Application {
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
 
-
         return grid;
     }
-   }
+
+    /**
+     * Displays an example of an alert (info) dialog. In this case an "about"
+     * type of dialog.
+     */
+    private void doShowAboutDialog() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About Literaturemaster 4000");
+        alert.setHeaderText("Literaturemaster 4000");
+        alert.setContentText("Application created by\n"
+                + "(C)Kristoffer Rogne, Asbjørn Frostad & Kay Sindre Lorgen\n"
+                + "v0.4000");
+
+        alert.showAndWait();
+    }
+}
