@@ -43,12 +43,12 @@ public class NewsStandApplication extends Application {
         BorderPane root = new BorderPane(); // Create the root node. The Menu will be placed at the top
         VBox topContainer = new VBox();  //Creates a container to hold all Menu Objects.
         MenuBar mainMenu = createMenus();  //Creates our main menu to hold our Sub-Menus.
-        //ToolBar toolBar = createToolBar();  // Creates a toolbare below the menubar
+        ToolBar toolBar = createToolBar();  // Creates a toolbare below the menubar
 
         // Place the menubar in the topContainer
         topContainer.getChildren().add(mainMenu);
         // Place the Toolbar
-        // topContainer.getChildren().add(toolBar);
+        topContainer.getChildren().add(toolBar);
 
         // Place the topcontainer in the top-section of the BorderPane
         root.setTop(topContainer);
@@ -152,6 +152,33 @@ public class NewsStandApplication extends Application {
         statusBar.getChildren().add(new Text("Status: OK"));
 
         return statusBar;
+    }
+
+    private ToolBar createToolBar() {
+        ToolBar toolBar = new ToolBar();
+        Button addLiteratureBtn = new Button();
+        Button removeLiteratureBtn = new Button();
+        Button addNewsPaperBtn = new Button();
+        
+        
+        addLiteratureBtn.setGraphic(new ImageView("images/FolderOpen_32.png"));
+        addLiteratureBtn.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                doAddLiterature();
+            }
+
+        });
+        removeLiteratureBtn.setGraphic(new ImageView("images/Print_32.png"));
+        
+        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, addNewsPaperBtn);
+        return toolBar;
+    }
+
+    private void doAddLiterature() {
+
     }
 
 }
