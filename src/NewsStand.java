@@ -25,10 +25,10 @@ public class NewsStand
     public String getList() {
         ArrayList<Literature> temporaryLiteratureList = this.literatureList.listAllLiteratures();
         String listOfliterature = "";
-        LiteratureView view = new LiteratureView();
+        StringFactory builder = new StringFactory();
         for(Literature literature: temporaryLiteratureList)
         {
-            listOfliterature += view.getInfo(literature);
+            listOfliterature += builder.getInfo(literature);
         }
         if(listOfliterature.equals(""))
         {
