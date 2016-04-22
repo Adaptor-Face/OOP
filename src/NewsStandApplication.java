@@ -1,4 +1,3 @@
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -61,7 +60,7 @@ public class NewsStandApplication extends Application {
         // Create the scene, adding the rootNode and setting the size
         Scene scene = new Scene(root, 300, 250);
         // Set title of the stage (window) and add the scene
-        primaryStage.setTitle("*** Literaturemaster 3000 ***");
+        primaryStage.setTitle("Literaturemaster 4000");
         primaryStage.setScene(scene);
         // Finally, make the stage (window) visible
         primaryStage.show();
