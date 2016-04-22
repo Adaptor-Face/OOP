@@ -79,7 +79,7 @@ public class NewsStandApplication extends Application {
      */
     @Override
     public void stop() {
-        doExitApplication();
+        System.exit(0);
         
     }
 
