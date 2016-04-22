@@ -14,7 +14,6 @@ import java.util.Scanner;
 class NewsStandUI {
 
     private NewsStand newsStand = null;
-    InputHandler input;
 
     /**
      * Creates an instance of the NewsStandUI User interface. An instance
@@ -23,7 +22,6 @@ class NewsStandUI {
     public NewsStandUI() {
         //TODO: Replace "new Application" with your application class.
         this.newsStand = new NewsStand();
-        this.input = new InputHandler();
     }
 
     /**
@@ -71,16 +69,17 @@ class NewsStandUI {
      */
     public void removeLiteratureFromList()
     {
+        Scanner reader = new Scanner(System.in);
         LiteratureView view = new LiteratureView();
         System.out.println("Enter the title of the book you wish to remove");
-        Literature literature = input.remove(newsStand);
+        Literature literature = newsStand.removeLiterature(reader.nextLine());
         if(literature == null)
         {
             System.out.println("There was no literature with that title.");
         } else
         {  
             System.out.println("Are you sure you want to remove: \n" + view.getInfo(literature) + "\nyes or no");
-            if(input.makeCertain())
+            if(makeCertain())
             {
                 System.out.println(literature.getTitle() + " was removed from the lists.");
                 newsStand.removeLiterature(literature.getTitle());
@@ -94,9 +93,10 @@ class NewsStandUI {
      */
     public void searchByTitle()
     {
+        Scanner reader = new Scanner(System.in);
         LiteratureView view = new LiteratureView();
         System.out.println("Enter title to search for:");
-        Literature foundLiterature = input.searchByTitle(newsStand);
+        Literature foundLiterature = newsStand.searchLiteratureByTitle(reader.nextLine());
         if(foundLiterature == null)
         {
             System.out.println("Nothing found with that title");
@@ -121,8 +121,7 @@ class NewsStandUI {
     private void addNewBookToList()
     {
         System.out.println("Enter the type of literature you want to add."
-                + "\nBook, Magazine or NewsPaper");
-        newsStand.addLiteratureToList(input.addLiterature());
+                + "\nBook, Magazine or NewsPaper NO ACTION HAS BEEN TAKEN!");
     }
 
     /**
@@ -150,6 +149,16 @@ class NewsStandUI {
             throw new InputMismatchException();
         }
         return menuSelection;
+    }
+    /**
+     * Check if the user really want to remove the given literature
+     * @return true or false 
+     */
+    public boolean makeCertain()
+    {
+    Scanner reader = new Scanner(System.in);
+              String answer = reader.nextLine();
+        return answer.toLowerCase().equals("yes");
     }
 
 }
