@@ -177,6 +177,11 @@ public class NewsStandApplication extends Application
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
+        Button button = new Button("Remove literature");
+        button.setOnAction(e -> doRemoveLiterature());
+        grid.add(button,5,10);
+        
+        
         Text scenetitle = new Text("Welcome");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
@@ -309,8 +314,8 @@ public class NewsStandApplication extends Application
         
     // Traditional way to get the response value.
     Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            literatureList.remove(dialog);
+        if (result.isPresent() /**&& result.get().equals(a literature)*/) {
+            literatureList.remove(dialog.getContentText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("something");
             alert.setHeaderText("it is deleted!");
@@ -318,7 +323,7 @@ public class NewsStandApplication extends Application
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("something");
-            alert.setHeaderText("not found!");
+            alert.setHeaderText("Not found");
             alert.showAndWait();
         }
         
