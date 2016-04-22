@@ -52,8 +52,6 @@ public class NewsStandApplication extends Application {
 
         // Place the topcontainer in the top-section of the BorderPane
         root.setTop(topContainer);
-        // Place the StatusBar at the bottom
-        root.setBottom(createStatusBar());
         // Place the centre content
         root.setCenter(createCentreContent());
 
@@ -114,9 +112,9 @@ public class NewsStandApplication extends Application {
         });
 
         Menu menuEdit = new Menu("Edit");
-        Menu menuView = new Menu("View");
+        Menu menuAbout = new Menu("About");
 
-        menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
+        menuBar.getMenus().addAll(menuFile, menuEdit, menuAbout);
 
         return menuBar;
     }
@@ -140,18 +138,4 @@ public class NewsStandApplication extends Application {
 
         return grid;
     }
-
-    /**
-     * Creates the StatusBar to be displayed at the bottom of the window.
-     *
-     * @return the StatusBar as a Node
-     */
-    private Node createStatusBar() {
-        HBox statusBar = new HBox();
-        statusBar.setStyle("-fx-background-color: #999999;");
-        statusBar.getChildren().add(new Text("Status: OK"));
-
-        return statusBar;
-    }
-
-}
+   }
