@@ -1,5 +1,6 @@
-
+import java.util.Optional;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
@@ -25,6 +26,8 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 /**
  * Demonstrates the use of menus in JavaFX.
@@ -45,12 +48,12 @@ public class NewsStandApplication extends Application {
         BorderPane root = new BorderPane(); // Create the root node. The Menu will be placed at the top
         VBox topContainer = new VBox();  //Creates a container to hold all Menu Objects.
         MenuBar mainMenu = createMenus();  //Creates our main menu to hold our Sub-Menus.
-        //ToolBar toolBar = createToolBar();  // Creates a toolbare below the menubar
+        ToolBar toolBar = createToolBar();  // Creates a toolbare below the menubar
 
         // Place the menubar in the topContainer
         topContainer.getChildren().add(mainMenu);
         // Place the Toolbar
-        // topContainer.getChildren().add(toolBar);
+        topContainer.getChildren().add(toolBar);
 
         // Place the topcontainer in the top-section of the BorderPane
         root.setTop(topContainer);
@@ -103,6 +106,16 @@ public class NewsStandApplication extends Application {
         menuFile.getItems().addAll(openFile, printFile);
         menuFile.getItems().add(new SeparatorMenuItem());
         menuFile.getItems().add(exitApp);
+        
+         
+        exitApp.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                doExitApplication();
+            }
+        });
 
         // Add event handler
         openFile.setOnAction(new EventHandler<ActionEvent>() {
@@ -149,6 +162,57 @@ public class NewsStandApplication extends Application {
 
         return grid;
     }
+    
+    /**
+     * Exit the application. Displays a confirmation dialog.
+     */
+    private void doExitApplication()
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Exit Application ?");
+        alert.setContentText("Are you sure you want to exit this application?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK)
+        {
+            // ... user chose OK
+            Platform.exit();
+        } else
+        {
+            // ... user chose CANCEL or closed the dialog
+            // then do nothing.
+        }
+   }
+
+    private ToolBar createToolBar() {
+        ToolBar toolBar = new ToolBar();
+        Button addLiteratureBtn = new Button();
+        Button removeLiteratureBtn = new Button();
+        Button addNewsPaperBtn = new Button();
+        
+        
+        addLiteratureBtn.setGraphic(new ImageView("images/FolderOpen_32.png"));
+        addLiteratureBtn.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                doAddLiterature();
+            }
+
+        });
+        removeLiteratureBtn.setGraphic(new ImageView("images/Print_32.png"));
+        
+        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, addNewsPaperBtn);
+        return toolBar;
+    }
+
+    private void doAddLiterature() {
+        
+    }
+
 
     /**
      * Displays an example of an alert (info) dialog. In this case an "about"
