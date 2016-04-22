@@ -36,6 +36,10 @@ import javafx.scene.control.ButtonType;
 public class NewsStandApplication extends Application {
 
     /**
+     * Register containing the Literature. This reg is non-JavaFX-specific.
+     */
+    private LiteratureRegister literatureList;
+    /**
      * The start-method is called by the JavaFX platform upon starting the
      * JavaFX-platform. The method is abstract and must be overridden by any
      * subclass of Application. The main window is setup in this method,
@@ -249,15 +253,14 @@ public class NewsStandApplication extends Application {
     private void doAddNewsPaper() {
         NewspaperDetailsDialog npDialog = new NewspaperDetailsDialog();
 
-        Optional<Newspaper> result = npDialog.showAndWait();
+        Optional<NewsPaper> result = npDialog.showAndWait();
 
         if (result.isPresent())
         {
             NewsPaper newspaper = result.get();
-            litReg.addLiterature(newspaper);
-            updateObservableList();
-            System.out.println("Number of items in litReg: " + litReg.getSize());
+            literatureList.add(newspaper);
         }
+    }
 
     /**
      * Displays an example of an alert (info) dialog. In this case an "about"
