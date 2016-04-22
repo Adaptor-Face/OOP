@@ -59,6 +59,8 @@ public class NewsStandApplication extends Application {
         root.setTop(topContainer);
         // Place the centre content
         root.setCenter(createCentreContent());
+        
+       
 
         // Create the scene, adding the rootNode and setting the size
         Scene scene = new Scene(root, 300, 250);
@@ -77,7 +79,8 @@ public class NewsStandApplication extends Application {
      */
     @Override
     public void stop() {
-        System.exit(0);
+        doExitApplication();
+        
     }
 
     /**
@@ -229,3 +232,7 @@ public class NewsStandApplication extends Application {
         alert.showAndWait();
     }
 }
+    
+   
+    
+    
