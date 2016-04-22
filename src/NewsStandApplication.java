@@ -306,6 +306,15 @@ public class NewsStandApplication extends Application {
     Optional<String> result = dialog.showAndWait();
         if (result.isPresent()) {
             literatureList.remove(dialog);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("something");
+            alert.setHeaderText("it is deleted!");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("something");
+            alert.setHeaderText("not found!");
+            alert.showAndWait();
         }
         
         
