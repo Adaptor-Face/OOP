@@ -1,4 +1,6 @@
+import java.util.Optional;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
@@ -23,6 +25,9 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 /**
  * Demonstrates the use of menus in JavaFX.
@@ -52,8 +57,6 @@ public class NewsStandApplication extends Application {
 
         // Place the topcontainer in the top-section of the BorderPane
         root.setTop(topContainer);
-        // Place the StatusBar at the bottom
-        root.setBottom(createStatusBar());
         // Place the centre content
         root.setCenter(createCentreContent());
 
@@ -103,6 +106,16 @@ public class NewsStandApplication extends Application {
         menuFile.getItems().addAll(openFile, printFile);
         menuFile.getItems().add(new SeparatorMenuItem());
         menuFile.getItems().add(exitApp);
+        
+         
+        exitApp.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                doExitApplication();
+            }
+        });
 
         // Add event handler
         openFile.setOnAction(new EventHandler<ActionEvent>() {
@@ -114,9 +127,9 @@ public class NewsStandApplication extends Application {
         });
 
         Menu menuEdit = new Menu("Edit");
-        Menu menuView = new Menu("View");
+        Menu menuAbout = new Menu("About");
 
-        menuBar.getMenus().addAll(menuFile, menuEdit, menuView);
+        menuBar.getMenus().addAll(menuFile, menuEdit, menuAbout);
 
         return menuBar;
     }
@@ -140,19 +153,29 @@ public class NewsStandApplication extends Application {
 
         return grid;
     }
-
+    
     /**
-     * Creates the StatusBar to be displayed at the bottom of the window.
-     *
-     * @return the StatusBar as a Node
+     * Exit the application. Displays a confirmation dialog.
      */
-    private Node createStatusBar() {
-        HBox statusBar = new HBox();
-        statusBar.setStyle("-fx-background-color: #999999;");
-        statusBar.getChildren().add(new Text("Status: OK"));
+    private void doExitApplication()
+    {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Exit Application ?");
+        alert.setContentText("Are you sure you want to exit this application?");
 
-        return statusBar;
-    }
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK)
+        {
+            // ... user chose OK
+            Platform.exit();
+        } else
+        {
+            // ... user chose CANCEL or closed the dialog
+            // then do nothing.
+        }
+   }
 
     private ToolBar createToolBar() {
         ToolBar toolBar = new ToolBar();
@@ -180,5 +203,4 @@ public class NewsStandApplication extends Application {
     private void doAddLiterature() {
 
     }
-
 }
