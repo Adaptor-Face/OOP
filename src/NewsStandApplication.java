@@ -34,7 +34,8 @@ import javafx.scene.control.ButtonType;
 /**
  * Demonstrates the use of menus in JavaFX.
  */
-public class NewsStandApplication extends Application {
+public class NewsStandApplication extends Application 
+{
 
     /**
      * Register containing the Literature. This reg is non-JavaFX-specific.
@@ -53,6 +54,11 @@ public class NewsStandApplication extends Application {
      *
      * @param primaryStage The main stage making up the main window.
      */
+    @Override
+    public void init()
+    {
+        literatureList = new LiteratureRegister();
+    }
     @Override
     public void start(Stage primaryStage) {
 
@@ -264,7 +270,6 @@ public class NewsStandApplication extends Application {
         if (result.isPresent())
         {
             NewsPaper newspaper = result.get();
-            System.out.println(newspaper.getPrice());
             literatureList.add(newspaper);
         }
     }
