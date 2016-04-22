@@ -302,7 +302,11 @@ public class NewsStandApplication extends Application {
         dialog.setTitle("Remove a book");
         dialog.setHeaderText("Enter title of the book");
         
-        result.ifPresent(name -> NewsStand.removeLiterature(textField));
+    // Traditional way to get the response value.
+    Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            literatureList.remove(dialog);
+        }
         
         
     }
