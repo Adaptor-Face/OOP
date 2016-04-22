@@ -10,16 +10,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Font;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
-import javafx.scene.control.PasswordField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 import javafx.event.EventHandler;
@@ -47,6 +43,12 @@ public class NewsStandApplication extends Application
      * between the TableView and the LiteratureRegister.
      */
     private ObservableList<Literature> literatures;
+    
+    @Override
+    public void init()
+    {
+        literatureList = new LiteratureRegister();
+    }
     /**
      * The start-method is called by the JavaFX platform upon starting the
      * JavaFX-platform. The method is abstract and must be overridden by any
@@ -55,11 +57,6 @@ public class NewsStandApplication extends Application
      *
      * @param primaryStage The main stage making up the main window.
      */
-    @Override
-    public void init()
-    {
-        literatureList = new LiteratureRegister();
-    }
     @Override
     public void start(Stage primaryStage) {
 
@@ -261,11 +258,27 @@ public class NewsStandApplication extends Application
     }
 
     private void doAddBook() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BookDetailsDialog npDialog = new BookDetailsDialog();
+
+        Optional<Book> result = npDialog.showAndWait();
+
+        if (result.isPresent())
+        {
+            Book book = result.get();
+            literatureList.add(book);
+        }
     }
 
     private void doAddMagazine() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        MagazineDetailsDialog npDialog = new MagazineDetailsDialog();
+
+        Optional<Magazine> result = npDialog.showAndWait();
+
+        if (result.isPresent())
+        {
+            Magazine magazine = result.get();
+            literatureList.add(magazine);
+        }
     }
 
     private void doAddNewsPaper() {
