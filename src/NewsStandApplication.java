@@ -60,6 +60,8 @@ public class NewsStandApplication extends Application {
         root.setTop(topContainer);
         // Place the centre content
         root.setCenter(createCentreContent());
+        
+       
 
         // Create the scene, adding the rootNode and setting the size
         Scene scene = new Scene(root, 300, 250);
@@ -79,6 +81,7 @@ public class NewsStandApplication extends Application {
     @Override
     public void stop() {
         System.exit(0);
+        
     }
 
     /**
@@ -128,9 +131,19 @@ public class NewsStandApplication extends Application {
         });
 
         Menu menuEdit = new Menu("Edit");
-        Menu menuAbout = new Menu("About");
 
-        menuBar.getMenus().addAll(menuFile, menuEdit, menuAbout);
+        // The Help-menu
+        Menu menuHelp = new Menu("Help");
+        MenuItem about = new MenuItem("About");
+        about.setOnAction(new EventHandler<ActionEvent>() 
+        {
+            @Override
+            public void handle(ActionEvent event) {
+                doShowAboutDialog();
+            }
+        });
+        menuHelp.getItems().add(about);
+        menuBar.getMenus().addAll(menuFile, menuEdit, menuHelp);
 
         return menuBar;
     }
@@ -150,7 +163,6 @@ public class NewsStandApplication extends Application {
         Text scenetitle = new Text("Welcome");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
-
 
         return grid;
     }
@@ -246,5 +258,23 @@ public class NewsStandApplication extends Application {
             updateObservableList();
             System.out.println("Number of items in litReg: " + litReg.getSize());
         }
+
+    /**
+     * Displays an example of an alert (info) dialog. In this case an "about"
+     * type of dialog.
+     */
+    private void doShowAboutDialog() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About Literaturemaster 4000");
+        alert.setHeaderText("Literaturemaster 4000");
+        alert.setContentText("Application created by\n"
+                + "(C)Kristoffer Rogne, Asbjørn Frostad & Kay Sindre Lorgen\n"
+                + "v0.4000");
+
+        alert.showAndWait();
     }
 }
+    
+   
+    
+    
