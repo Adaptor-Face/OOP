@@ -353,7 +353,11 @@ public class NewsStandApplication extends Application {
 
         if (result.isPresent()) {
             Book book = result.get();
+            if (book.equals(literatureList.findLiterature(book.getTitle()))) {
+            
+            } else {
             literatureList.add(book);
+            }
         }
     }
 
@@ -367,7 +371,11 @@ public class NewsStandApplication extends Application {
 
         if (result.isPresent()) {
             Magazine magazine = result.get();
+            if (magazine.equals(literatureList.findLiterature(magazine.getTitle()))) {
+            
+            } else {
             literatureList.add(magazine);
+            }
         }
     }
 
@@ -381,8 +389,20 @@ public class NewsStandApplication extends Application {
 
         if (result.isPresent()) {
             NewsPaper newspaper = result.get();
+            if (newspaper.equals(literatureList.findLiterature(newspaper.getTitle()))) {
+            
+            } else {
             literatureList.add(newspaper);
+            }
         }
+    }
+    
+    private void doShowAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Literature already registered!");
+        alert.showAndWait();
+        
     }
 
     /**
