@@ -238,15 +238,7 @@ public class NewsStandApplication extends Application {
             public void changed(ObservableValue<? extends String> observable,
                     String oldValue, String newValue)
             {
-                LiteratureRegister matchingLiterature = new LiteratureRegister();
-                for(Literature literature : literatureList.listAllLiteratures())
-                {
-                    if(literature.getTitle().contains(newValue))
-                    {
-                        matchingLiterature.add(literature);
-                    }
-                }
-                literatures.setAll(matchingLiterature.listAllLiteratures());
+                doFindMatchingLiterature(newValue);
             }
         });
         Button clearSearch = new Button();
@@ -377,5 +369,17 @@ public class NewsStandApplication extends Application {
             alert.showAndWait();
         }
 
+    }
+    private void doFindMatchingLiterature(String title)
+    {
+                LiteratureRegister matchingLiterature = new LiteratureRegister();
+                for(Literature literature : literatureList.listAllLiteratures())
+                {
+                    if(literature.getTitle().contains(title))
+                    {
+                        matchingLiterature.add(literature);
+                    }
+                }
+                literatures.setAll(matchingLiterature.listAllLiteratures());
     }
 }
