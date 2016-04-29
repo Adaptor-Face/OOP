@@ -464,6 +464,10 @@ public class NewsStandApplication extends Application {
         {
             BookDetailsDialog bdDialog = new BookDetailsDialog((Book)literature);
             bdDialog.showAndWait();
+        } else if(literature instanceof Magazine)
+        {
+            MagazineDetailsDialog mdDialog = new MagazineDetailsDialog((Magazine)literature);
+            mdDialog.showAndWait();
         }
         
     }

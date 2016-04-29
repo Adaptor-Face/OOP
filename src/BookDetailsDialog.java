@@ -128,6 +128,10 @@ public class BookDetailsDialog extends Dialog<Book>
 
         getDialogPane().setContent(grid);
 
+        if(title.equals("") || author.equals("") || publisher.equals(""))
+        {
+                    doShowAlert();
+        }
         // Convert the result to a username-password-pair when the OK button is clicked.
         setResultConverter(new Callback<ButtonType, Book>()
         {
@@ -144,10 +148,8 @@ public class BookDetailsDialog extends Dialog<Book>
                     return new Book(title.getText(), author.getText(), numberOfPages, yearPublished, price, publisher.getText());
                     } catch (NumberFormatException e)
                     {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Empty fields");
-                    alert.setHeaderText("Fields can not be empty.");
-                    alert.showAndWait();
+                        doShowAlert();
+                        
                     }
                 }
                 return null;
@@ -188,7 +190,8 @@ public class BookDetailsDialog extends Dialog<Book>
         yearPublishedTxt.setDisable(true);
         
         TextField priceTxt = new TextField();
-        priceTxt.setPromptText("Price");
+        priceTxt.setText("" + book.getPrice());
+        priceTxt.setDisable(true);
 
         grid.add(new Label("Title:"), 0, 0);
         grid.add(title, 1, 0);
@@ -204,5 +207,12 @@ public class BookDetailsDialog extends Dialog<Book>
         grid.add(yearPublishedTxt, 1, 5);
 
         getDialogPane().setContent(grid);
+    }
+    private void doShowAlert()
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty fields");
+        alert.setHeaderText("Fields can not be empty.");
+        alert.showAndWait();
     }
 }
