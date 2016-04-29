@@ -249,7 +249,7 @@ public class NewsStandApplication extends Application {
             }
         });
         
-        addLiteratureBtn.setGraphic(new ImageView("images/FolderOpen_32.png"));
+        addLiteratureBtn.setGraphic(new ImageView("images/plus_32.png"));
         addLiteratureBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -257,7 +257,7 @@ public class NewsStandApplication extends Application {
             }
 
         });
-        removeLiteratureBtn.setGraphic(new ImageView("images/Print_32.png"));
+        removeLiteratureBtn.setGraphic(new ImageView("images/minus_32.png"));
         
         removeLiteratureBtn.setOnAction(e -> doRemoveLiterature());
         toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, search, clearSearch);
