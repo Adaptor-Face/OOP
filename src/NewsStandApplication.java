@@ -10,9 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Font;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -21,32 +18,28 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
 import javafx.util.Callback;
 
 /**
- * Demonstrates the use of menus in JavaFX.
+ * The main application for a newsStand. 
+ * 
+ * 
+ * @author Kristoffer Rogne, Kay Sindre Lorgen, Asbjørn Frostad
  */
 public class NewsStandApplication extends Application {
 
@@ -54,6 +47,10 @@ public class NewsStandApplication extends Application {
      * Register containing the Literature. This reg is non-JavaFX-specific.
      */
     private LiteratureRegister literatureList;
+    
+    /**
+     * The table view for the lists.
+     */
     private TableView tableView;
     /**
      * An ObservableList used to "wrap" the real register to enable the link
@@ -433,7 +430,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Fill register with dummy books
+     * Fill register with dummy books. BYPASSES SAME TITLE RESTRICTION
      */
     private void doFillRegister() {
         literatureList.add(new Book("Java book", "Kay", 165, 1985, 199, "Lorgen inc"));

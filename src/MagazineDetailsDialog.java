@@ -15,7 +15,7 @@ import javafx.util.Callback;
  * user, in order to be able to create a magazine instance to be added to the
  * register.
  *
- * @author asty, Editetd 22.04.16 by Kristoffer Rogne, Kay Sindre Lorgen,
+ * @author asty, Edited 22.04.16 by Kristoffer Rogne, Kay Sindre Lorgen,
  * Asbjørn Frostad
  */
 public class MagazineDetailsDialog extends Dialog<Magazine> {
@@ -135,7 +135,9 @@ public class MagazineDetailsDialog extends Dialog<Magazine> {
     }
 
     /**
-     * Creates an instance of the MagazineDetails dialog
+     * Creates an instance of the MagazineDetails dialog that 
+     * displays a magazines information.
+     * @param magazine the magazine to display
      */
     public MagazineDetailsDialog(Magazine magazine) {
         super();

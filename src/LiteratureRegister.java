@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 /**
  * Holds the list of literatures.
- * You are able to print out the list alphabeticaly or by price
+ * You are able to print out the list alphabetically or by price
  * You can search for literatures by  author name, surname and/or last name,
  * by literature title, partial title allowed, and by publisher.
  * Generic search searches within author, title and publisher. 
  * 
- * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
+ * @author Kristoffer Rogne, Kay Sindre Lorgen, Asbjørn Frostad
  * @version 0.4, 2016-04-08
  */
 public class LiteratureRegister
@@ -30,7 +30,9 @@ public class LiteratureRegister
     }
     /**
      * Prints out a list containing all literatures, complete with author name, title and price.
-     * @param literature The literature u want to add.
+     * Returns the removed literature.
+     * @param title The title of the literature you want to remove.
+     * @return the removed literature.
      */
     public Literature remove(String title)
     {

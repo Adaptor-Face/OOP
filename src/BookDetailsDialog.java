@@ -15,7 +15,7 @@ import javafx.util.Callback;
  * user, in order to be able to create a book instance to be added
  * to the register.
  *
- * @author asty, Editetd 22.04.16 by Kristoffer Rogne, Kay Sindre Lorgen, Asbjørn Frostad
+ * @author asty, Edited 22.04.16 by Kristoffer Rogne, Kay Sindre Lorgen, Asbjørn Frostad
  */
 public class BookDetailsDialog extends Dialog<Book>
 {
@@ -157,6 +157,12 @@ public class BookDetailsDialog extends Dialog<Book>
             }
         });
     }
+    
+    /**
+     * Creates an instance of the BookDetails dialog that 
+     * displays a books information.
+     * @param book the book to display
+     */
     public BookDetailsDialog(Book book)
     {
         super();

@@ -1,7 +1,7 @@
 /**
  * Abstract class representing common traits among all literature
  * 
- * @author Kristoffer Rogne, Kay Sindre Lorgen & Asbjørn Frostad 
+ * @author Kristoffer Rogne, Kay Sindre Lorgen, Asbjørn Frostad
  * @version 0.4, 2016-04-08
  */
 public abstract class Literature {

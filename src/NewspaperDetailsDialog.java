@@ -10,17 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  * A dialog used to get the necessary information about a newspaper from the
  * user, in order to be able to create a Newspaper instance to be added
  * to the register.
  *
- * @author asty
+ * @author asty, Edited 22.04.16 by Kristoffer Rogne, Kay Sindre Lorgen,
+ * Asbjørn Frostad
  */
 public class NewspaperDetailsDialog extends Dialog<NewsPaper>
 {
@@ -133,7 +129,9 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
     }
 
     /**
-     * Creates an instance of the NewspaperDetails dialog
+     * Creates an instance of the NewspaperDetails dialog that 
+     * displays a newsPapers information.
+     * @param newsPaper the newsPaper to display
      */
     public NewspaperDetailsDialog(NewsPaper newsPaper)
     {
