@@ -362,8 +362,8 @@ public class NewsStandApplication extends Application {
 
         TextInputDialog dialog = new TextInputDialog("Title");
 
-        dialog.setTitle("Remove a book");
-        dialog.setHeaderText("Enter title of the book");
+        dialog.setTitle("Remove literature");
+        dialog.setHeaderText("Enter title of the literature");
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
@@ -389,7 +389,7 @@ public class NewsStandApplication extends Application {
                 LiteratureRegister matchingLiterature = new LiteratureRegister();
                 for(Literature literature : literatureList.listAllLiteratures())
                 {
-                    if(literature.getTitle().contains(title))
+                    if(literature.getTitle().toLowerCase().contains(title.toLowerCase()))
                     {
                         matchingLiterature.add(literature);
                     }
