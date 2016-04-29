@@ -128,10 +128,6 @@ public class BookDetailsDialog extends Dialog<Book>
 
         getDialogPane().setContent(grid);
 
-        if(title.equals("") || author.equals("") || publisher.equals(""))
-        {
-                    doShowAlert();
-        }
         // Convert the result to a username-password-pair when the OK button is clicked.
         setResultConverter(new Callback<ButtonType, Book>()
         {
@@ -145,7 +141,12 @@ public class BookDetailsDialog extends Dialog<Book>
                     double price = Double.parseDouble(priceTxt.getText());
                     int yearPublished = Integer.parseInt(yearPublishedTxt.getText());
                     
+                    if(title.getText().isEmpty() || author.getText().isEmpty() || publisher.getText().isEmpty())
+                    {
+                                doShowAlert();
+                    }else {
                     return new Book(title.getText(), author.getText(), numberOfPages, yearPublished, price, publisher.getText());
+                    }
                     } catch (NumberFormatException e)
                     {
                         doShowAlert();

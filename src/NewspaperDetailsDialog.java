@@ -117,16 +117,18 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
                 { try {
                     int numberOfPages = Integer.parseInt(numberOfPagesTxt.getText());
                     double price = Double.parseDouble(priceTxt.getText());
+                        if (title.getText().isEmpty() || datePublished.getText().isEmpty() || publisher.getText().isEmpty()) {
+                            doShowAlert();
+                        } else {
                     return new NewsPaper(title.getText(), price, publisher.getText(), numberOfPages, datePublished.getText());
-                } catch (NumberFormatException e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Empty fields");
-                    alert.setHeaderText("Fields can not be empty.");
-                    alert.showAndWait();
+                }
+                }catch (NumberFormatException e) {
+                    doShowAlert();
                 }
                 }
                 return null;
             }
+
         });
     }
 
@@ -179,4 +181,10 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
 
         getDialogPane().setContent(grid);
     }
+            private void doShowAlert() {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Empty fields");
+                    alert.setHeaderText("Fields can not be empty.");
+                    alert.showAndWait();
+            }
 }

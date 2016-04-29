@@ -12,19 +12,18 @@ import javafx.util.Callback;
 
 /**
  * A dialog used to get the necessary information about a magazine from the
- * user, in order to be able to create a magazine instance to be added
- * to the register.
+ * user, in order to be able to create a magazine instance to be added to the
+ * register.
  *
- * @author asty, Editetd 22.04.16 by Kristoffer Rogne, Kay Sindre Lorgen, Asbjørn Frostad
+ * @author asty, Editetd 22.04.16 by Kristoffer Rogne, Kay Sindre Lorgen,
+ * Asbjørn Frostad
  */
-public class MagazineDetailsDialog extends Dialog<Magazine>
-{
+public class MagazineDetailsDialog extends Dialog<Magazine> {
 
     /**
      * Creates an instance of the MagazineDetails dialog
      */
-    public MagazineDetailsDialog()
-    {
+    public MagazineDetailsDialog() {
         super();
         setTitle("Magazine Details");
 
@@ -46,20 +45,15 @@ public class MagazineDetailsDialog extends Dialog<Magazine>
         numberOfPagesTxt.setPromptText("Number of pages");
 
         // Prevent characters (non-integers) to be added
-        numberOfPagesTxt.textProperty().addListener(new ChangeListener<String>()
-        {
+        numberOfPagesTxt.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
-                    String oldValue, String newValue)
-            {
-                try
-                {
-                    if (newValue.length() > 0)
-                    {
+                    String oldValue, String newValue) {
+                try {
+                    if (newValue.length() > 0) {
                         Integer.parseInt(newValue);
                     }
-                } catch (NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
                     numberOfPagesTxt.setText(oldValue);
                 }
             }
@@ -69,20 +63,15 @@ public class MagazineDetailsDialog extends Dialog<Magazine>
         issueNrTxt.setPromptText("Number of pages");
 
         // Prevent characters (non-integers) to be added
-        issueNrTxt.textProperty().addListener(new ChangeListener<String>()
-        {
+        issueNrTxt.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
-                    String oldValue, String newValue)
-            {
-                try
-                {
-                    if (newValue.length() > 0)
-                    {
+                    String oldValue, String newValue) {
+                try {
+                    if (newValue.length() > 0) {
                         Integer.parseInt(newValue);
                     }
-                } catch (NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
                     issueNrTxt.setText(oldValue);
                 }
             }
@@ -91,20 +80,15 @@ public class MagazineDetailsDialog extends Dialog<Magazine>
         TextField priceTxt = new TextField();
         priceTxt.setPromptText("Price");
         // Prevent characters (non-integers) to be added
-        priceTxt.textProperty().addListener(new ChangeListener<String>()
-        {
+        priceTxt.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
-                    String oldValue, String newValue)
-            {
-                try
-                {
-                    if (newValue.length() > 0)
-                    {
+                    String oldValue, String newValue) {
+                try {
+                    if (newValue.length() > 0) {
                         Double.parseDouble(newValue);
                     }
-                } catch (NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
                     priceTxt.setText(oldValue);
                 }
             }
@@ -128,34 +112,32 @@ public class MagazineDetailsDialog extends Dialog<Magazine>
         getDialogPane().setContent(grid);
 
         // Convert the result to a username-password-pair when the OK button is clicked.
-        setResultConverter(new Callback<ButtonType, Magazine>()
-        {
+        setResultConverter(new Callback<ButtonType, Magazine>() {
             @Override
-            public Magazine call(ButtonType button)
-            {
-                if (button == ButtonType.OK)
-                { try {
-                    int numberOfPages = Integer.parseInt(numberOfPagesTxt.getText());
-                    double price = Double.parseDouble(priceTxt.getText());
-                    int issueNr = Integer.parseInt(issueNrTxt.getText());
-                    return new Magazine(title.getText(), price, publisher.getText(), numberOfPages, issueNr, datePublished.getText());
-                } catch (NumberFormatException e )
-                {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Empty fields");
-                    alert.setHeaderText("Fields can not be empty.");
-                    alert.showAndWait();
-                }
+            public Magazine call(ButtonType button) {
+                if (button == ButtonType.OK) {
+                    try {
+                        int numberOfPages = Integer.parseInt(numberOfPagesTxt.getText());
+                        double price = Double.parseDouble(priceTxt.getText());
+                        int issueNr = Integer.parseInt(issueNrTxt.getText());
+                        if (title.getText().isEmpty() || datePublished.getText().isEmpty() || publisher.getText().isEmpty()) {
+                            doShowAlert();
+                        } else {
+                            return new Magazine(title.getText(), price, publisher.getText(), numberOfPages, issueNr, datePublished.getText());
+                        }
+                    } catch (NumberFormatException e) {
+                        doShowAlert();
+                    }
                 }
                 return null;
             }
         });
     }
+
     /**
      * Creates an instance of the MagazineDetails dialog
      */
-    public MagazineDetailsDialog(Magazine magazine)
-    {
+    public MagazineDetailsDialog(Magazine magazine) {
         super();
         setTitle("Magazine Details");
 
@@ -178,7 +160,7 @@ public class MagazineDetailsDialog extends Dialog<Magazine>
         TextField numberOfPagesTxt = new TextField();
         numberOfPagesTxt.setText("" + magazine.getNumberOfPages());
         numberOfPagesTxt.setDisable(true);
-        
+
         TextField issueNrTxt = new TextField();
         issueNrTxt.setText("" + magazine.getIssue());
         issueNrTxt.setDisable(true);
@@ -186,7 +168,7 @@ public class MagazineDetailsDialog extends Dialog<Magazine>
         TextField priceTxt = new TextField();
         priceTxt.setText("" + magazine.getPrice());
         priceTxt.setDisable(true);
-        
+
         TextField datePublished = new TextField();
         datePublished.setText(magazine.getDatePublished());
         datePublished.setDisable(true);
@@ -205,5 +187,12 @@ public class MagazineDetailsDialog extends Dialog<Magazine>
         grid.add(datePublished, 1, 5);
 
         getDialogPane().setContent(grid);
+    }
+
+    private void doShowAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Empty fields");
+        alert.setHeaderText("Fields can not be empty.");
+        alert.showAndWait();
     }
 }
