@@ -127,7 +127,7 @@ public class NewsStandApplication extends Application {
         // Create the Menu Bar to hold all the menus
         MenuBar menuBar = new MenuBar();
 
-        // The File-menu
+        // The App-menu
         Menu menuFile = new Menu("App");
         MenuItem exitApp = new MenuItem("Exit");
         menuFile.getItems().add(new SeparatorMenuItem());
@@ -139,7 +139,7 @@ public class NewsStandApplication extends Application {
                 doExitApplication();
             }
         });
-
+        // The Edit-menu
         Menu menuEdit = new Menu("Edit");
         MenuItem addLiterature = new MenuItem("Add");
         MenuItem removeLiterature = new MenuItem("Remove");
@@ -213,15 +213,15 @@ public class NewsStandApplication extends Application {
         tableView = new TableView();
         tableView.setItems(this.getLiteratureList());
         tableView.getColumns().addAll(titleColumn, publisherColumn, typeColumn);
-        tableView.setRowFactory( tv -> {
+        tableView.setRowFactory(tv -> {
             TableRow<Literature> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Literature literature = row.getItem();
                     doShowDetails(literature);
                 }
             });
-            return row ;
+            return row;
         });
         vbox.getChildren().add(tableView);
         return vbox;
@@ -259,6 +259,11 @@ public class NewsStandApplication extends Application {
         }
     }
 
+    /**
+     * Creates the content of the toolbar section of the GUI.
+     *
+     * @return the node to be placed in the toolbar of the BorderPane
+     */
     private ToolBar createToolBar() {
         ToolBar toolBar = new ToolBar();
         Button addLiteratureBtn = new Button();
@@ -440,7 +445,8 @@ public class NewsStandApplication extends Application {
         updateObservableList();
 
     }
-/**
+
+    /**
      * Search for literature
      */
     private void doFindMatchingLiterature(String title) {
@@ -452,25 +458,21 @@ public class NewsStandApplication extends Application {
         }
         literatures.setAll(matchingLiterature.listAllLiteratures());
     }
-    
+
     /**
      * Displays the details of a literature.
      */
-    private void doShowDetails(Literature literature)
-    {
-        if(literature instanceof Book)
-        {
-            BookDetailsDialog bdDialog = new BookDetailsDialog((Book)literature);
+    private void doShowDetails(Literature literature) {
+        if (literature instanceof Book) {
+            BookDetailsDialog bdDialog = new BookDetailsDialog((Book) literature);
             bdDialog.showAndWait();
-        } else if(literature instanceof Magazine)
-        {
-            MagazineDetailsDialog mdDialog = new MagazineDetailsDialog((Magazine)literature);
+        } else if (literature instanceof Magazine) {
+            MagazineDetailsDialog mdDialog = new MagazineDetailsDialog((Magazine) literature);
             mdDialog.showAndWait();
-        } else if(literature instanceof NewsPaper)
-        {
-            NewspaperDetailsDialog ndDialog = new NewspaperDetailsDialog((NewsPaper)literature);
+        } else if (literature instanceof NewsPaper) {
+            NewspaperDetailsDialog ndDialog = new NewspaperDetailsDialog((NewsPaper) literature);
             ndDialog.showAndWait();
         }
-        
+
     }
 }
