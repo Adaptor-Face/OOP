@@ -2,6 +2,7 @@
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -31,10 +32,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 /**
  * Demonstrates the use of menus in JavaFX.
@@ -83,7 +86,7 @@ public class NewsStandApplication extends Application {
         root.setCenter(createCentreContent());
 
         // Create the scene, adding the rootNode and setting the size
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 400, 300);
         // Set title of the stage (window) and add the scene
         primaryStage.setTitle("Literaturemaster 4000");
         primaryStage.setScene(scene);
@@ -182,10 +185,20 @@ public class NewsStandApplication extends Application {
         TableColumn<Literature, String> publisherColumn = new TableColumn<>("Publisher");
         publisherColumn.setMinWidth(200);
         publisherColumn.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-
+        
+        // The Type-column
+        TableColumn<Literature, String> typeColumn = new TableColumn<>("Type");
+        typeColumn.setMinWidth(200);
+        typeColumn.setCellValueFactory(new Callback<CellDataFeatures<Literature, String>, ObservableValue<String>>() {
+        @Override
+        public ObservableValue<String> call(CellDataFeatures<Literature, String> p) 
+        {
+            return new ReadOnlyStringWrapper(p.getValue().getClass().getSimpleName());
+        }
+        });
         tableView = new TableView();
         tableView.setItems(this.getLiteratureList());
-        tableView.getColumns().addAll(titleColumn, publisherColumn);
+        tableView.getColumns().addAll(titleColumn, publisherColumn, typeColumn);
 
         vbox.getChildren().add(tableView);
         return vbox;
