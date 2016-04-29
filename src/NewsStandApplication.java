@@ -386,27 +386,43 @@ public class NewsStandApplication extends Application {
 
         dialog.setTitle("Remove literature");
         dialog.setHeaderText("Enter title of the literature");
-
+        
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent() /**
                  * && result.get().equals(a literature)
                  */
                 ) {
+            try {
             Literature removedLiterature = literatureList.remove(result.get());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Removed");
             alert.setHeaderText(removedLiterature.getTitle() + " has been deleted!");
             alert.showAndWait();
-        } else {
+            
+            
+                
+        }  catch (NullPointerException e ) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("something");
             alert.setHeaderText("Not found");
             alert.showAndWait();
+            }
         }
-            updateObservableList();
-
+            else {
+           
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("something");
+            alert.setHeaderText("Not found");
+            alert.showAndWait();
+        
+        
+            
+     
+         }
+        updateObservableList();
     }
+        
     private void doFindMatchingLiterature(String title)
     {
                 LiteratureRegister matchingLiterature = new LiteratureRegister();
