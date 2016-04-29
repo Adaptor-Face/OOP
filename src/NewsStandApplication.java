@@ -254,8 +254,9 @@ public class NewsStandApplication extends Application {
                 doFindMatchingLiterature(newValue);
             }
         });
-        Button clearSearch = new Button();
-        clearSearch.setOnAction(new EventHandler<ActionEvent>() {
+        Button clearSearchBtn = new Button();
+        clearSearchBtn.setGraphic(new ImageView("images/clear_10.png"));
+        clearSearchBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 search.clear();
@@ -273,7 +274,7 @@ public class NewsStandApplication extends Application {
         removeLiteratureBtn.setGraphic(new ImageView("images/minus_32.png"));
         
         removeLiteratureBtn.setOnAction(e -> doRemoveLiterature());
-        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, search, clearSearch);
+        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, search, clearSearchBtn);
         return toolBar;
     }
 
