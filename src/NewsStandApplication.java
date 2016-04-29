@@ -126,10 +126,7 @@ public class NewsStandApplication extends Application {
 
         // The File-menu
         Menu menuFile = new Menu("App");
-        MenuItem openFile = new MenuItem("Open");
-        MenuItem printFile = new MenuItem("Print");
         MenuItem exitApp = new MenuItem("Exit");
-        menuFile.getItems().addAll(openFile, printFile);
         menuFile.getItems().add(new SeparatorMenuItem());
         menuFile.getItems().add(exitApp);
 
@@ -140,17 +137,24 @@ public class NewsStandApplication extends Application {
             }
         });
 
-        // Add event handler
-        openFile.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Open file was selected...");
-            }
-        });
-
         Menu menuEdit = new Menu("Edit");
+        MenuItem addLiterature = new MenuItem("Add");
+        MenuItem removeLiterature = new MenuItem("Remove");
+        menuEdit.getItems().addAll(addLiterature, removeLiterature);
 
+        addLiterature.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            doAddLiterature();
+        }
+    });
+        
+        removeLiterature.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            doRemoveLiterature();
+        }
+    });
         // The Help-menu
         Menu menuHelp = new Menu("Help");
         MenuItem about = new MenuItem("About");
@@ -277,7 +281,9 @@ public class NewsStandApplication extends Application {
         toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, search, clearSearchBtn);
         return toolBar;
     }
-
+/**
+ * Adds literature to the listings
+ */
     private void doAddLiterature() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Add Literature");
@@ -301,6 +307,9 @@ public class NewsStandApplication extends Application {
             updateObservableList();
     }
 
+/**
+ * Adds literature to the listings
+ */
     private void doAddBook() {
         BookDetailsDialog npDialog = new BookDetailsDialog();
 
@@ -312,6 +321,9 @@ public class NewsStandApplication extends Application {
         }
     }
 
+/**
+ * Adds literature to the listings
+ */
     private void doAddMagazine() {
         MagazineDetailsDialog npDialog = new MagazineDetailsDialog();
 
@@ -323,6 +335,9 @@ public class NewsStandApplication extends Application {
         }
     }
 
+/**
+ * Adds literature to the listings
+ */
     private void doAddNewsPaper() {
         NewspaperDetailsDialog npDialog = new NewspaperDetailsDialog();
 
