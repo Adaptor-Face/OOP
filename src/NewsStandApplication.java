@@ -33,6 +33,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
@@ -205,7 +206,17 @@ public class NewsStandApplication extends Application {
         tableView = new TableView();
         tableView.setItems(this.getLiteratureList());
         tableView.getColumns().addAll(titleColumn, publisherColumn, typeColumn);
-
+        tableView.setRowFactory( tv -> {
+            TableRow<Literature> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Literature literature = row.getItem();
+                    doShowDetails(literature);
+                    System.out.println(literature.getTitle());
+                }
+            });
+            return row ;
+        });
         vbox.getChildren().add(tableView);
         return vbox;
     }
@@ -418,5 +429,18 @@ public class NewsStandApplication extends Application {
                     }
                 }
                 literatures.setAll(matchingLiterature.listAllLiteratures());
+    }
+    
+    /**
+     * Displays the details of a literature.
+     */
+    private void doShowDetails(Literature literature)
+    {
+        if(literature instanceof Book)
+        {
+            BookDetailsDialog bdDialog = new BookDetailsDialog((Book)literature);
+            bdDialog.showAndWait();
+        }
+        
     }
 }

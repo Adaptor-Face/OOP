@@ -26,7 +26,7 @@ public class BookDetailsDialog extends Dialog<Book>
     public BookDetailsDialog()
     {
         super();
-        setTitle("Book Details");
+        setTitle("Enter Book Details");
 
         // Set the button types.
         getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
@@ -152,5 +152,56 @@ public class BookDetailsDialog extends Dialog<Book>
                 return null;
             }
         });
+    }
+    public BookDetailsDialog(Book book)
+    {
+        super();
+        setTitle("Book Details");
+
+        // Set the button types.
+        getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField title = new TextField();
+        title.setText(book.getTitle());
+        title.setDisable(true);
+        
+        TextField author = new TextField();
+        author.setText(book.getAuthor());
+        author.setDisable(true);
+
+        TextField publisher = new TextField();
+        publisher.setText(book.getPublisher());
+        publisher.setDisable(true);
+
+        TextField numberOfPagesTxt = new TextField();
+        numberOfPagesTxt.setText("" + book.getNumberOfPages());
+        numberOfPagesTxt.setDisable(true);
+        
+        TextField yearPublishedTxt = new TextField();
+        yearPublishedTxt.setText("" + book.getYearPublished());
+        yearPublishedTxt.setDisable(true);
+        
+        TextField priceTxt = new TextField();
+        priceTxt.setPromptText("Price");
+
+        grid.add(new Label("Title:"), 0, 0);
+        grid.add(title, 1, 0);
+        grid.add(new Label("Author:"), 0, 1);
+        grid.add(author, 1, 1);
+        grid.add(new Label("Publisher:"), 0, 2);
+        grid.add(publisher, 1, 2);
+        grid.add(new Label("Number of pages:"), 0, 3);
+        grid.add(numberOfPagesTxt, 1, 3);
+        grid.add(new Label("Price:"), 0, 4);
+        grid.add(priceTxt, 1, 4);
+        grid.add(new Label("Year Published:"), 0, 5);
+        grid.add(yearPublishedTxt, 1, 5);
+
+        getDialogPane().setContent(grid);
     }
 }
