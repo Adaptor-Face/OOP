@@ -302,6 +302,7 @@ public class NewsStandApplication extends Application {
             }
 
         });
+        showDetailsBtn.setGraphic(new ImageView("images/information_32.png"));
         showDetailsBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
