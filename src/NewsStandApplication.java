@@ -1,3 +1,4 @@
+
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -31,8 +32,7 @@ import javafx.scene.control.TextInputDialog;
 /**
  * Demonstrates the use of menus in JavaFX.
  */
-public class NewsStandApplication extends Application 
-{
+public class NewsStandApplication extends Application {
 
     /**
      * Register containing the Literature. This reg is non-JavaFX-specific.
@@ -43,12 +43,12 @@ public class NewsStandApplication extends Application
      * between the TableView and the LiteratureRegister.
      */
     private ObservableList<Literature> literatures;
-    
+
     @Override
-    public void init()
-    {
+    public void init() {
         literatureList = new LiteratureRegister();
     }
+
     /**
      * The start-method is called by the JavaFX platform upon starting the
      * JavaFX-platform. The method is abstract and must be overridden by any
@@ -74,8 +74,6 @@ public class NewsStandApplication extends Application
         root.setTop(topContainer);
         // Place the centre content
         root.setCenter(createCentreContent());
-        
-       
 
         // Create the scene, adding the rootNode and setting the size
         Scene scene = new Scene(root, 300, 250);
@@ -95,7 +93,7 @@ public class NewsStandApplication extends Application
     @Override
     public void stop() {
         System.exit(0);
-        
+
     }
 
     /**
@@ -124,13 +122,10 @@ public class NewsStandApplication extends Application
         menuFile.getItems().addAll(openFile, printFile);
         menuFile.getItems().add(new SeparatorMenuItem());
         menuFile.getItems().add(exitApp);
-        
-         
-        exitApp.setOnAction(new EventHandler<ActionEvent>()
-        {
+
+        exitApp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
+            public void handle(ActionEvent event) {
                 doExitApplication();
             }
         });
@@ -149,8 +144,7 @@ public class NewsStandApplication extends Application
         // The Help-menu
         Menu menuHelp = new Menu("Help");
         MenuItem about = new MenuItem("About");
-        about.setOnAction(new EventHandler<ActionEvent>() 
-        {
+        about.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 doShowAboutDialog();
@@ -176,21 +170,19 @@ public class NewsStandApplication extends Application
 
         Button button = new Button("Remove literature");
         button.setOnAction(e -> doRemoveLiterature());
-        grid.add(button,5,10);
-        
-        
+        grid.add(button, 5, 10);
+
         Text scenetitle = new Text("Welcome");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
 
         return grid;
     }
-    
+
     /**
      * Exit the application. Displays a confirmation dialog.
      */
-    private void doExitApplication()
-    {
+    private void doExitApplication() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Exit Application ?");
@@ -198,37 +190,32 @@ public class NewsStandApplication extends Application
 
         Optional<ButtonType> result = alert.showAndWait();
 
-        if (result.get() == ButtonType.OK)
-        {
+        if (result.get() == ButtonType.OK) {
             // ... user chose OK
             Platform.exit();
-        } else
-        {
+        } else {
             // ... user chose CANCEL or closed the dialog
             // then do nothing.
         }
-   }
+    }
 
     private ToolBar createToolBar() {
         ToolBar toolBar = new ToolBar();
         Button addLiteratureBtn = new Button();
         Button removeLiteratureBtn = new Button();
         Button addNewsPaperBtn = new Button();
-        
-        
+
         addLiteratureBtn.setGraphic(new ImageView("images/FolderOpen_32.png"));
-        addLiteratureBtn.setOnAction(new EventHandler<ActionEvent>()
-        {
+        addLiteratureBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event)
-            {
+            public void handle(ActionEvent event) {
                 doAddLiterature();
             }
 
         });
         removeLiteratureBtn.setGraphic(new ImageView("images/Print_32.png"));
-        
-        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, addNewsPaperBtn);
+        removeLiteratureBtn.setOnAction(e -> doRemoveLiterature());
+        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn);
         return toolBar;
     }
 
@@ -241,20 +228,17 @@ public class NewsStandApplication extends Application
         ButtonType addMagazineBtn = new ButtonType("Magazine");
         ButtonType addNewsPaperBtn = new ButtonType("NewsPaper");
         ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-        
+
         alert.getButtonTypes().setAll(addBookBtn, addMagazineBtn, addNewsPaperBtn, buttonTypeCancel);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == addBookBtn)
-        {
+        if (result.get() == addBookBtn) {
             doAddBook();
-        } else if (result.get() == addMagazineBtn)
-        {
+        } else if (result.get() == addMagazineBtn) {
             doAddMagazine();
-        } else if (result.get() == addNewsPaperBtn)
-        {
+        } else if (result.get() == addNewsPaperBtn) {
             doAddNewsPaper();
-        } 
+        }
     }
 
     private void doAddBook() {
@@ -262,8 +246,7 @@ public class NewsStandApplication extends Application
 
         Optional<Book> result = npDialog.showAndWait();
 
-        if (result.isPresent())
-        {
+        if (result.isPresent()) {
             Book book = result.get();
             literatureList.add(book);
         }
@@ -274,8 +257,7 @@ public class NewsStandApplication extends Application
 
         Optional<Magazine> result = npDialog.showAndWait();
 
-        if (result.isPresent())
-        {
+        if (result.isPresent()) {
             Magazine magazine = result.get();
             literatureList.add(magazine);
         }
@@ -286,8 +268,7 @@ public class NewsStandApplication extends Application
 
         Optional<NewsPaper> result = npDialog.showAndWait();
 
-        if (result.isPresent())
-        {
+        if (result.isPresent()) {
             NewsPaper newspaper = result.get();
             literatureList.add(newspaper);
         }
@@ -298,8 +279,7 @@ public class NewsStandApplication extends Application
      * Literature register. Call this method whenever changes are made to the
      * underlying LiteratureRegister.
      */
-    private void updateObservableList()
-    {
+    private void updateObservableList() {
         this.literatures.setAll(this.literatureList.listAllLiteratures());
     }
 
@@ -317,17 +297,20 @@ public class NewsStandApplication extends Application
 
         alert.showAndWait();
     }
-    
+
     private void doRemoveLiterature() {
-        
+
         TextInputDialog dialog = new TextInputDialog("Title");
-        
+
         dialog.setTitle("Remove a book");
         dialog.setHeaderText("Enter title of the book");
-        
-    // Traditional way to get the response value.
-    Optional<String> result = dialog.showAndWait();
-        if (result.isPresent() /**&& result.get().equals(a literature)*/) {
+
+        // Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent() /**
+                 * && result.get().equals(a literature)
+                 */
+                ) {
             literatureList.remove(dialog.getContentText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("something");
@@ -339,11 +322,6 @@ public class NewsStandApplication extends Application
             alert.setHeaderText("Not found");
             alert.showAndWait();
         }
-        
-        
+
     }
 }
-    
-   
-    
-    
