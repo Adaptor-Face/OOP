@@ -131,7 +131,7 @@ public class NewsStandApplication extends Application {
         // Create the Menu Bar to hold all the menus
         MenuBar menuBar = new MenuBar();
 
-        // The File-menu
+        // The App-menu
         Menu menuFile = new Menu("App");
         MenuItem selectedDetails = new MenuItem("Details");
         MenuItem exitApp = new MenuItem("Exit");
@@ -150,7 +150,7 @@ public class NewsStandApplication extends Application {
                 doShowDetails();
             }
         });
-
+        // The Edit-menu
         Menu menuEdit = new Menu("Edit");
         MenuItem addLiterature = new MenuItem("Add");
         MenuItem removeLiterature = new MenuItem("Remove");
@@ -259,6 +259,11 @@ public class NewsStandApplication extends Application {
         }
     }
 
+    /**
+     * Creates the content of the toolbar section of the GUI.
+     *
+     * @return the node to be placed in the toolbar of the BorderPane
+     */
     private ToolBar createToolBar() {
         ToolBar toolBar = new ToolBar();
         Button addLiteratureBtn = new Button();
