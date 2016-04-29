@@ -190,7 +190,9 @@ public class MagazineDetailsDialog extends Dialog<Magazine> {
 
         getDialogPane().setContent(grid);
     }
-
+    /**
+     * shows an alert
+     */
     private void doShowAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Empty fields");

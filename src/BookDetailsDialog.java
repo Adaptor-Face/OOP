@@ -215,6 +215,10 @@ public class BookDetailsDialog extends Dialog<Book>
 
         getDialogPane().setContent(grid);
     }
+    
+    /**
+     * Shows an alert.
+     */
     private void doShowAlert()
     {
         Alert alert = new Alert(Alert.AlertType.ERROR);

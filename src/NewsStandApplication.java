@@ -315,7 +315,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Adds literature to the listings
+     * Adds literature to the listings.
      */
     private void doAddLiterature() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -341,7 +341,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Adds book to the listings
+     * Adds a book to the listings.
      */
     private void doAddBook() {
         BookDetailsDialog npDialog = new BookDetailsDialog();
@@ -360,7 +360,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Adds magazine to the listings
+     * Adds a magazine to the listings.
      */
     private void doAddMagazine() {
         MagazineDetailsDialog npDialog = new MagazineDetailsDialog();
@@ -379,7 +379,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Adds newspaper to the listings
+     * Adds a newspaper to the listings.
      */
     private void doAddNewsPaper() {
         NewspaperDetailsDialog npDialog = new NewspaperDetailsDialog();
@@ -397,6 +397,9 @@ public class NewsStandApplication extends Application {
         }
     }
     
+    /**
+     * Shows an alert.
+     */
     private void doShowAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -416,7 +419,7 @@ public class NewsStandApplication extends Application {
 
     /**
      * Displays an alert (info) dialog which show information about the creators
-     * of Literaturemaster 4000
+     * of Literaturemaster 4000.
      */
     private void doShowAboutDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -442,7 +445,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Remove literature from the listnings
+     * Remove literature from the listnings.
      */
     private void doRemoveLiterature() {
         Object tempObj = tableView.getSelectionModel().getSelectedItem();
@@ -475,7 +478,8 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Search for literature
+     * Search for literature by title.
+     * @param title The title of the literature u want to find.
      */
     private void doFindMatchingLiterature(String title) {
         LiteratureRegister matchingLiterature = new LiteratureRegister();
