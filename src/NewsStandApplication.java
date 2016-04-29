@@ -1,6 +1,9 @@
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -26,7 +29,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Demonstrates the use of menus in JavaFX.
@@ -168,22 +175,39 @@ public class NewsStandApplication extends Application
      * @return the node to be placed in the centre of the BorderPane
      */
     private Node createCentreContent() {
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
+        VBox vbox = new VBox();
+        TableView tableView;
 
-        Button button = new Button("Remove literature");
-        button.setOnAction(e -> doRemoveLiterature());
-        grid.add(button,5,10);
-        
-        
-        Text scenetitle = new Text("Welcome");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(scenetitle, 0, 0, 2, 1);
+        // Define the columns
+        // The Title-column
+        TableColumn<Literature, String> titleColumn = new TableColumn<>("Title");
+        titleColumn.setMinWidth(200);
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
 
-        return grid;
+        // The Publisher-column
+        TableColumn<Literature, String> publisherColumn = new TableColumn<>("Publisher");
+        publisherColumn.setMinWidth(200);
+        publisherColumn.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+
+        tableView = new TableView();
+        tableView.setItems(this.getLiteratureList());
+        tableView.getColumns().addAll(titleColumn, publisherColumn);
+
+        vbox.getChildren().add(tableView);
+        return vbox;
+    }
+
+    /**
+     * Returns an ObservableList holding the literatures to display.
+     *
+     * @return an ObservableList holding the literatures to display.
+     */
+    private ObservableList<Literature> getLiteratureList()
+    {
+        // Create an ObservableArrayList wrapping the LiteratureRegister
+        literatures
+                = FXCollections.observableArrayList(this.literatureList.listAllLiteratures());
+        return literatures;
     }
     
     /**
@@ -213,7 +237,28 @@ public class NewsStandApplication extends Application
         ToolBar toolBar = new ToolBar();
         Button addLiteratureBtn = new Button();
         Button removeLiteratureBtn = new Button();
-        Button addNewsPaperBtn = new Button();
+        
+        TextField search = new TextField();
+        search.setPromptText("Search");
+        // Prevent characters (non-integers) to be added
+        search.textProperty().addListener(new ChangeListener<String>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends String> observable,
+                    String oldValue, String newValue)
+            {
+                LiteratureRegister matchingLiterature = new LiteratureRegister();
+                for(Literature literature : literatureList.listAllLiteratures())
+                {
+                    if(literature.getTitle().startsWith(newValue))
+                    {
+                        matchingLiterature.add(literature);
+                    }
+                }
+                literatures.setAll(matchingLiterature.listAllLiteratures());
+            }
+        });
+        Button clearSearch = new Button();
         
         
         addLiteratureBtn.setGraphic(new ImageView("images/FolderOpen_32.png"));
@@ -228,7 +273,7 @@ public class NewsStandApplication extends Application
         });
         removeLiteratureBtn.setGraphic(new ImageView("images/Print_32.png"));
         
-        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, addNewsPaperBtn);
+        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, search, clearSearch);
         return toolBar;
     }
 
@@ -255,6 +300,7 @@ public class NewsStandApplication extends Application
         {
             doAddNewsPaper();
         } 
+            updateObservableList();
     }
 
     private void doAddBook() {
