@@ -219,7 +219,6 @@ public class NewsStandApplication extends Application {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Literature literature = row.getItem();
                     doShowDetails(literature);
-                    System.out.println(literature.getTitle());
                 }
             });
             return row ;
@@ -468,6 +467,10 @@ public class NewsStandApplication extends Application {
         {
             MagazineDetailsDialog mdDialog = new MagazineDetailsDialog((Magazine)literature);
             mdDialog.showAndWait();
+        } else if(literature instanceof NewsPaper)
+        {
+            NewspaperDetailsDialog ndDialog = new NewspaperDetailsDialog((NewsPaper)literature);
+            ndDialog.showAndWait();
         }
         
     }

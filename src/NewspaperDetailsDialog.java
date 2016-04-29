@@ -129,4 +129,54 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
             }
         });
     }
+
+    /**
+     * Creates an instance of the NewspaperDetails dialog
+     */
+    public NewspaperDetailsDialog(NewsPaper newsPaper)
+    {
+        super();
+        setTitle("Newspaper Details");
+
+        // Set the button types.
+        getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField title = new TextField();
+        title.setText(newsPaper.getTitle());
+        title.setDisable(true);
+
+        TextField publisher = new TextField();
+        publisher.setText(newsPaper.getPublisher());
+        publisher.setDisable(true);
+
+        TextField numberOfPagesTxt = new TextField();
+        numberOfPagesTxt.setText("" + newsPaper.getNumberOfPages());
+        numberOfPagesTxt.setDisable(true);
+
+        TextField priceTxt = new TextField();
+        priceTxt.setText("" + newsPaper.getPrice());
+        priceTxt.setDisable(true);
+        
+        TextField datePublished = new TextField();
+        datePublished.setText(newsPaper.getDatePublished());
+        datePublished.setDisable(true);
+
+        grid.add(new Label("Title:"), 0, 0);
+        grid.add(title, 1, 0);
+        grid.add(new Label("Publisher:"), 0, 1);
+        grid.add(publisher, 1, 1);
+        grid.add(new Label("Number of pages:"), 0, 2);
+        grid.add(numberOfPagesTxt, 1, 2);
+        grid.add(new Label("Price:"), 0, 3);
+        grid.add(priceTxt, 1, 3);
+        grid.add(new Label("Date Published:"), 0, 4);
+        grid.add(datePublished, 1, 4);
+
+        getDialogPane().setContent(grid);
+    }
 }

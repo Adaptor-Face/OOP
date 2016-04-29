@@ -188,6 +188,8 @@ public class MagazineDetailsDialog extends Dialog<Magazine>
         priceTxt.setDisable(true);
         
         TextField datePublished = new TextField();
+        datePublished.setText(magazine.getDatePublished());
+        datePublished.setDisable(true);
 
         grid.add(new Label("Title:"), 0, 0);
         grid.add(title, 1, 0);
