@@ -40,6 +40,7 @@ import javafx.util.Callback;
  * 
  * 
  * @author Kristoffer Rogne, Kay Sindre Lorgen, Asbjørn Frostad
+ * @version v0.41
  */
 public class NewsStandApplication extends Application {
 
