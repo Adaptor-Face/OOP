@@ -37,6 +37,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.util.Callback;
 
 /**
@@ -86,7 +88,7 @@ public class NewsStandApplication extends Application {
         root.setCenter(createCentreContent());
 
         // Create the scene, adding the rootNode and setting the size
-        Scene scene = new Scene(root, 400, 300);
+        Scene scene = new Scene(root, 475, 300);
         // Set title of the stage (window) and add the scene
         primaryStage.setTitle("Literaturemaster 4000");
         primaryStage.setScene(scene);
@@ -192,7 +194,7 @@ public class NewsStandApplication extends Application {
         
         // The Type-column
         TableColumn<Literature, String> typeColumn = new TableColumn<>("Type");
-        typeColumn.setMinWidth(200);
+        typeColumn.setMinWidth(75);
         typeColumn.setCellValueFactory(new Callback<CellDataFeatures<Literature, String>, ObservableValue<String>>() {
         @Override
         public ObservableValue<String> call(CellDataFeatures<Literature, String> p) 
@@ -259,6 +261,11 @@ public class NewsStandApplication extends Application {
             }
         });
         Button clearSearchBtn = new Button();
+        clearSearchBtn.visibleProperty().bind( search.textProperty().isEmpty().not() );
+        
+        clearSearchBtn.setBorder(Border.EMPTY);
+        clearSearchBtn.setBackground(Background.EMPTY);
+        clearSearchBtn.setPadding(Insets.EMPTY);
         clearSearchBtn.setGraphic(new ImageView("images/clear_10.png"));
         clearSearchBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
