@@ -2,6 +2,7 @@
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
@@ -113,10 +114,16 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
             public NewsPaper call(ButtonType button)
             {
                 if (button == ButtonType.OK)
-                {
+                { try {
                     int numberOfPages = Integer.parseInt(numberOfPagesTxt.getText());
                     double price = Double.parseDouble(priceTxt.getText());
                     return new NewsPaper(title.getText(), price, publisher.getText(), numberOfPages, datePublished.getText());
+                } catch (NumberFormatException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Empty fields");
+                    alert.setHeaderText("Fields can not be empty.");
+                    alert.showAndWait();
+                }
                 }
                 return null;
             }

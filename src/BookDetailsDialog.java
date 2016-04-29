@@ -144,9 +144,10 @@ public class BookDetailsDialog extends Dialog<Book>
                     return new Book(title.getText(), author.getText(), numberOfPages, yearPublished, price, publisher.getText());
                     } catch (NumberFormatException e)
                     {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Empty fields");
                     alert.setHeaderText("Fields can not be empty.");
+                    alert.showAndWait();
                     }
                 }
                 return null;
