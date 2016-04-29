@@ -353,8 +353,9 @@ public class NewsStandApplication extends Application {
 
         if (result.isPresent()) {
             Book book = result.get();
-            if (book.equals(literatureList.findLiterature(book.getTitle()))) {
-            
+            Literature literature = literatureList.findLiterature(book.getTitle());
+            if (literature != null && book.getTitle().toLowerCase().equals(literature.getTitle().toLowerCase())) {
+            doShowAlert();
             } else {
             literatureList.add(book);
             }
@@ -371,8 +372,9 @@ public class NewsStandApplication extends Application {
 
         if (result.isPresent()) {
             Magazine magazine = result.get();
-            if (magazine.equals(literatureList.findLiterature(magazine.getTitle()))) {
-            
+            Literature literature = literatureList.findLiterature(magazine.getTitle());
+            if (literature != null && magazine.getTitle().toLowerCase().equals(literature.getTitle().toLowerCase())) {
+            doShowAlert();
             } else {
             literatureList.add(magazine);
             }
@@ -389,8 +391,9 @@ public class NewsStandApplication extends Application {
 
         if (result.isPresent()) {
             NewsPaper newspaper = result.get();
-            if (newspaper.equals(literatureList.findLiterature(newspaper.getTitle()))) {
-            
+            Literature literature = literatureList.findLiterature(newspaper.getTitle());
+            if (literature != null && newspaper.getTitle().toLowerCase().equals(literature.getTitle().toLowerCase())) {
+            doShowAlert();
             } else {
             literatureList.add(newspaper);
             }
