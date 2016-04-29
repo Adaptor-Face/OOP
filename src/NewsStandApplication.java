@@ -241,7 +241,7 @@ public class NewsStandApplication extends Application {
                 LiteratureRegister matchingLiterature = new LiteratureRegister();
                 for(Literature literature : literatureList.listAllLiteratures())
                 {
-                    if(literature.getTitle().startsWith(newValue))
+                    if(literature.getTitle().contains(newValue))
                     {
                         matchingLiterature.add(literature);
                     }
@@ -250,7 +250,12 @@ public class NewsStandApplication extends Application {
             }
         });
         Button clearSearch = new Button();
-        
+        clearSearch.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                search.clear();
+            }
+        });
         
         addLiteratureBtn.setGraphic(new ImageView("images/FolderOpen_32.png"));
         addLiteratureBtn.setOnAction(new EventHandler<ActionEvent>() {
