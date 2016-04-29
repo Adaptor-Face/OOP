@@ -2,6 +2,7 @@
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
@@ -135,10 +136,18 @@ public class BookDetailsDialog extends Dialog<Book>
             {
                 if (button == ButtonType.OK)
                 {
+                    try {
                     int numberOfPages = Integer.parseInt(numberOfPagesTxt.getText());
                     double price = Double.parseDouble(priceTxt.getText());
                     int yearPublished = Integer.parseInt(yearPublishedTxt.getText());
+                    
                     return new Book(title.getText(), author.getText(), numberOfPages, yearPublished, price, publisher.getText());
+                    } catch (NumberFormatException e)
+                    {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Empty fields");
+                    alert.setHeaderText("Fields can not be empty.");
+                    }
                 }
                 return null;
             }
