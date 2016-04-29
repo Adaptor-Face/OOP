@@ -395,6 +395,7 @@ public class NewsStandApplication extends Application {
         literatureList.add(new Book("Book of life", "Kristoffer", 666, 2015, 499, "Rogne inc"));
         literatureList.add(new NewsPaper("News paper", 10, "Lorgen newspaper inc", 48, "24.04.2016"));
         literatureList.add(new Magazine("Cool magazine", 69, "Lorgen magazine inc", 124, 7, "24.04.2016"));
+        updateObservableList();
     }
 
     private void doRemoveLiterature() {
