@@ -133,7 +133,8 @@ public class NewspaperDetailsDialog extends Dialog<NewsPaper>
     }
 
     /**
-     * Creates an instance of the NewspaperDetails dialog
+     * Displays the details of the newspaper.
+     * @param newsPaper the newspaper u want to display the details of.
      */
     public NewspaperDetailsDialog(NewsPaper newsPaper)
     {

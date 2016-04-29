@@ -157,6 +157,11 @@ public class BookDetailsDialog extends Dialog<Book>
             }
         });
     }
+    
+    /**
+     * Displays the details of the book.
+     * @param book the book u want to display the details of.
+     */
     public BookDetailsDialog(Book book)
     {
         super();
@@ -209,6 +214,10 @@ public class BookDetailsDialog extends Dialog<Book>
 
         getDialogPane().setContent(grid);
     }
+    
+    /**
+     * Shows an alert.
+     */
     private void doShowAlert()
     {
         Alert alert = new Alert(Alert.AlertType.ERROR);
