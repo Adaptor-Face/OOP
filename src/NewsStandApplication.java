@@ -145,18 +145,18 @@ public class NewsStandApplication extends Application {
         menuEdit.getItems().addAll(addLiterature, removeLiterature);
 
         addLiterature.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            doAddLiterature();
-        }
-    });
-        
+            @Override
+            public void handle(ActionEvent event) {
+                doAddLiterature();
+            }
+        });
+
         removeLiterature.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            doRemoveLiterature();
-        }
-    });
+            @Override
+            public void handle(ActionEvent event) {
+                doRemoveLiterature();
+            }
+        });
         // The Help-menu
         Menu menuHelp = new Menu("Help");
         MenuItem about = new MenuItem("About");
@@ -166,7 +166,15 @@ public class NewsStandApplication extends Application {
                 doShowAboutDialog();
             }
         });
+        MenuItem fillRegister = new MenuItem("Fill register");
+        fillRegister.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                doFillRegister();
+            }
+        });
         menuHelp.getItems().add(about);
+        menuHelp.getItems().add(fillRegister);
         menuBar.getMenus().addAll(menuFile, menuEdit, menuHelp);
 
         return menuBar;
@@ -191,16 +199,15 @@ public class NewsStandApplication extends Application {
         TableColumn<Literature, String> publisherColumn = new TableColumn<>("Publisher");
         publisherColumn.setMinWidth(200);
         publisherColumn.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        
+
         // The Type-column
         TableColumn<Literature, String> typeColumn = new TableColumn<>("Type");
         typeColumn.setMinWidth(75);
         typeColumn.setCellValueFactory(new Callback<CellDataFeatures<Literature, String>, ObservableValue<String>>() {
-        @Override
-        public ObservableValue<String> call(CellDataFeatures<Literature, String> p) 
-        {
-            return new ReadOnlyStringWrapper(p.getValue().getClass().getSimpleName());
-        }
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Literature, String> p) {
+                return new ReadOnlyStringWrapper(p.getValue().getClass().getSimpleName());
+            }
         });
         tableView = new TableView();
         tableView.setItems(this.getLiteratureList());
@@ -215,8 +222,7 @@ public class NewsStandApplication extends Application {
      *
      * @return an ObservableList holding the literatures to display.
      */
-    private ObservableList<Literature> getLiteratureList()
-    {
+    private ObservableList<Literature> getLiteratureList() {
         // Create an ObservableArrayList wrapping the LiteratureRegister
         literatures
                 = FXCollections.observableArrayList(this.literatureList.listAllLiteratures());
@@ -247,22 +253,20 @@ public class NewsStandApplication extends Application {
         ToolBar toolBar = new ToolBar();
         Button addLiteratureBtn = new Button();
         Button removeLiteratureBtn = new Button();
-        
+
         TextField search = new TextField();
         search.setPromptText("Search");
         // Prevent characters (non-integers) to be added
-        search.textProperty().addListener(new ChangeListener<String>()
-        {
+        search.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
-                    String oldValue, String newValue)
-            {
+                    String oldValue, String newValue) {
                 doFindMatchingLiterature(newValue);
             }
         });
         Button clearSearchBtn = new Button();
-        clearSearchBtn.visibleProperty().bind( search.textProperty().isEmpty().not() );
-        
+        clearSearchBtn.visibleProperty().bind(search.textProperty().isEmpty().not());
+
         clearSearchBtn.setBorder(Border.EMPTY);
         clearSearchBtn.setBackground(Background.EMPTY);
         clearSearchBtn.setPadding(Insets.EMPTY);
@@ -273,7 +277,7 @@ public class NewsStandApplication extends Application {
                 search.clear();
             }
         });
-        
+
         addLiteratureBtn.setGraphic(new ImageView("images/plus_32.png"));
         addLiteratureBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -283,14 +287,15 @@ public class NewsStandApplication extends Application {
 
         });
         removeLiteratureBtn.setGraphic(new ImageView("images/minus_32.png"));
-        
+
         removeLiteratureBtn.setOnAction(e -> doRemoveLiterature());
         toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, search, clearSearchBtn);
         return toolBar;
     }
-/**
- * Adds literature to the listings
- */
+
+    /**
+     * Adds literature to the listings
+     */
     private void doAddLiterature() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Add Literature");
@@ -310,13 +315,13 @@ public class NewsStandApplication extends Application {
             doAddMagazine();
         } else if (result.get() == addNewsPaperBtn) {
             doAddNewsPaper();
-        } 
-            updateObservableList();
+        }
+        updateObservableList();
     }
 
-/**
- * Adds literature to the listings
- */
+    /**
+     * Adds literature to the listings
+     */
     private void doAddBook() {
         BookDetailsDialog npDialog = new BookDetailsDialog();
 
@@ -328,9 +333,9 @@ public class NewsStandApplication extends Application {
         }
     }
 
-/**
- * Adds literature to the listings
- */
+    /**
+     * Adds literature to the listings
+     */
     private void doAddMagazine() {
         MagazineDetailsDialog npDialog = new MagazineDetailsDialog();
 
@@ -342,9 +347,9 @@ public class NewsStandApplication extends Application {
         }
     }
 
-/**
- * Adds literature to the listings
- */
+    /**
+     * Adds literature to the listings
+     */
     private void doAddNewsPaper() {
         NewspaperDetailsDialog npDialog = new NewspaperDetailsDialog();
 
@@ -380,6 +385,18 @@ public class NewsStandApplication extends Application {
         alert.showAndWait();
     }
 
+    /**
+     * Displays an example of an alert (info) dialog. In this case an "about"
+     * type of dialog.
+     */
+    private void doFillRegister() {
+        literatureList.add(new Book("Java book", "Kay", 165, 1985, 199, "Lorgen inc"));
+        literatureList.add(new Book("This book", "Asbjørn", 777, 1999, 299, "Frostad inc"));
+        literatureList.add(new Book("Book of life", "Kristoffer", 666, 2015, 499, "Rogne inc"));
+        literatureList.add(new NewsPaper("News paper", 10, "Lorgen newspaper inc", 48, "24.04.2016"));
+        literatureList.add(new Magazine("Cool magazine", 69, "Lorgen magazine inc", 124, 7, "24.04.2016"));
+    }
+
     private void doRemoveLiterature() {
 
         TextInputDialog dialog = new TextInputDialog("Title");
@@ -404,19 +421,17 @@ public class NewsStandApplication extends Application {
             alert.setHeaderText("Not found");
             alert.showAndWait();
         }
-            updateObservableList();
+        updateObservableList();
 
     }
-    private void doFindMatchingLiterature(String title)
-    {
-                LiteratureRegister matchingLiterature = new LiteratureRegister();
-                for(Literature literature : literatureList.listAllLiteratures())
-                {
-                    if(literature.getTitle().toLowerCase().contains(title.toLowerCase()))
-                    {
-                        matchingLiterature.add(literature);
-                    }
-                }
-                literatures.setAll(matchingLiterature.listAllLiteratures());
+
+    private void doFindMatchingLiterature(String title) {
+        LiteratureRegister matchingLiterature = new LiteratureRegister();
+        for (Literature literature : literatureList.listAllLiteratures()) {
+            if (literature.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                matchingLiterature.add(literature);
+            }
+        }
+        literatures.setAll(matchingLiterature.listAllLiteratures());
     }
 }
