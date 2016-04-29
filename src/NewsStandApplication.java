@@ -31,6 +31,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableRow;
@@ -38,6 +39,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
 import javafx.util.Callback;
@@ -51,6 +54,7 @@ public class NewsStandApplication extends Application {
      * Register containing the Literature. This reg is non-JavaFX-specific.
      */
     private LiteratureRegister literatureList;
+    private TableView tableView;
     /**
      * An ObservableList used to "wrap" the real register to enable the link
      * between the TableView and the LiteratureRegister.
@@ -129,14 +133,21 @@ public class NewsStandApplication extends Application {
 
         // The File-menu
         Menu menuFile = new Menu("App");
+        MenuItem selectedDetails = new MenuItem("Details");
         MenuItem exitApp = new MenuItem("Exit");
-        menuFile.getItems().add(new SeparatorMenuItem());
-        menuFile.getItems().add(exitApp);
+        menuFile.getItems().addAll(selectedDetails, new SeparatorMenuItem(), exitApp);
 
         exitApp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 doExitApplication();
+            }
+        });
+
+        selectedDetails.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                doShowDetails();
             }
         });
 
@@ -188,7 +199,6 @@ public class NewsStandApplication extends Application {
      */
     private Node createCentreContent() {
         VBox vbox = new VBox();
-        TableView tableView;
 
         // Define the columns
         // The Title-column
@@ -213,16 +223,6 @@ public class NewsStandApplication extends Application {
         tableView = new TableView();
         tableView.setItems(this.getLiteratureList());
         tableView.getColumns().addAll(titleColumn, publisherColumn, typeColumn);
-        tableView.setRowFactory( tv -> {
-            TableRow<Literature> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    Literature literature = row.getItem();
-                    doShowDetails(literature);
-                }
-            });
-            return row ;
-        });
         vbox.getChildren().add(tableView);
         return vbox;
     }
@@ -263,6 +263,7 @@ public class NewsStandApplication extends Application {
         ToolBar toolBar = new ToolBar();
         Button addLiteratureBtn = new Button();
         Button removeLiteratureBtn = new Button();
+        Button showDetailsBtn = new Button();
 
         TextField search = new TextField();
         search.setPromptText("Search");
@@ -296,10 +297,17 @@ public class NewsStandApplication extends Application {
             }
 
         });
+        showDetailsBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                doShowDetails();
+            }
+
+        });
         removeLiteratureBtn.setGraphic(new ImageView("images/minus_32.png"));
 
         removeLiteratureBtn.setOnAction(e -> doRemoveLiterature());
-        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, search, clearSearchBtn);
+        toolBar.getItems().addAll(addLiteratureBtn, removeLiteratureBtn, showDetailsBtn, search, clearSearchBtn);
         return toolBar;
     }
 
@@ -411,36 +419,36 @@ public class NewsStandApplication extends Application {
      * Remove literature from the listnings
      */
     private void doRemoveLiterature() {
+        Object tempObj = tableView.getSelectionModel().getSelectedItem();
+        if (tempObj != null) {
+            if (tempObj instanceof Literature) {
+                Literature literatureToRemove = (Literature) tempObj;
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Remove");
+                alert.setHeaderText("Are you sure you want to remove " + literatureToRemove.getTitle() + "?");
 
-        TextInputDialog dialog = new TextInputDialog("Title");
+                Optional<ButtonType> result = alert.showAndWait();
 
-        dialog.setTitle("Remove literature");
-        dialog.setHeaderText("Enter title of the literature");
+                if (result.get() == ButtonType.OK) {
+                    literatureList.remove(literatureToRemove.getTitle());
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Remove");
+                    alert.setHeaderText(literatureToRemove.getTitle() + " has been deleted!");
+                    alert.showAndWait();
+                } else {
 
-        // Traditional way to get the response value.
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent() /**
-                 * && result.get().equals(a literature)
-                 */
-                ) {
-            try {
-                Literature removedLiterature = literatureList.remove(result.get());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Removed");
-                alert.setHeaderText(removedLiterature.getTitle() + " has been deleted!");
-                alert.showAndWait();
-
-            } catch (NullPointerException e) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("something");
-                alert.setHeaderText("Not found");
-                alert.showAndWait();
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Remove");
+                    alert.setHeaderText(literatureToRemove.getTitle() + " was not removed");
+                    alert.showAndWait();
+                }
+                updateObservableList();
             }
-        }
-        updateObservableList();
 
+        }
     }
-/**
+
+    /**
      * Search for literature
      */
     private void doFindMatchingLiterature(String title) {
@@ -452,25 +460,22 @@ public class NewsStandApplication extends Application {
         }
         literatures.setAll(matchingLiterature.listAllLiteratures());
     }
-    
+
     /**
      * Displays the details of a literature.
      */
-    private void doShowDetails(Literature literature)
-    {
-        if(literature instanceof Book)
-        {
-            BookDetailsDialog bdDialog = new BookDetailsDialog((Book)literature);
+    private void doShowDetails() {
+        Object tempObj = tableView.getSelectionModel().getSelectedItem();
+        if (tempObj instanceof Book) {
+            BookDetailsDialog bdDialog = new BookDetailsDialog((Book) tempObj);
             bdDialog.showAndWait();
-        } else if(literature instanceof Magazine)
-        {
-            MagazineDetailsDialog mdDialog = new MagazineDetailsDialog((Magazine)literature);
+        } else if (tempObj instanceof Magazine) {
+            MagazineDetailsDialog mdDialog = new MagazineDetailsDialog((Magazine) tempObj);
             mdDialog.showAndWait();
-        } else if(literature instanceof NewsPaper)
-        {
-            NewspaperDetailsDialog ndDialog = new NewspaperDetailsDialog((NewsPaper)literature);
+        } else if (tempObj instanceof NewsPaper) {
+            NewspaperDetailsDialog ndDialog = new NewspaperDetailsDialog((NewsPaper) tempObj);
             ndDialog.showAndWait();
         }
-        
+
     }
 }
