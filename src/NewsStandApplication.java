@@ -370,10 +370,10 @@ public class NewsStandApplication extends Application {
                  * && result.get().equals(a literature)
                  */
                 ) {
-            literatureList.remove(dialog.getContentText());
+            Literature removedLiterature = literatureList.remove(result.get());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("something");
-            alert.setHeaderText("it is deleted!");
+            alert.setTitle("Removed");
+            alert.setHeaderText(removedLiterature.getTitle() + " has been deleted!");
             alert.showAndWait();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -381,6 +381,7 @@ public class NewsStandApplication extends Application {
             alert.setHeaderText("Not found");
             alert.showAndWait();
         }
+            updateObservableList();
 
     }
     private void doFindMatchingLiterature(String title)
