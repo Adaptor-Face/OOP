@@ -320,7 +320,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Adds literature to the listings
+     * Adds book to the listings
      */
     private void doAddBook() {
         BookDetailsDialog npDialog = new BookDetailsDialog();
@@ -334,7 +334,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Adds literature to the listings
+     * Adds magazine to the listings
      */
     private void doAddMagazine() {
         MagazineDetailsDialog npDialog = new MagazineDetailsDialog();
@@ -348,7 +348,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Adds literature to the listings
+     * Adds newspaper to the listings
      */
     private void doAddNewsPaper() {
         NewspaperDetailsDialog npDialog = new NewspaperDetailsDialog();
@@ -371,8 +371,8 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Displays an example of an alert (info) dialog. In this case an "about"
-     * type of dialog.
+     * Displays an alert (info) dialog which show information about the creators
+     * of Literaturemaster 4000
      */
     private void doShowAboutDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -386,8 +386,7 @@ public class NewsStandApplication extends Application {
     }
 
     /**
-     * Displays an example of an alert (info) dialog. In this case an "about"
-     * type of dialog.
+     * Fill register with dummy books
      */
     private void doFillRegister() {
         literatureList.add(new Book("Java book", "Kay", 165, 1985, 199, "Lorgen inc"));
@@ -398,13 +397,16 @@ public class NewsStandApplication extends Application {
         updateObservableList();
     }
 
+    /**
+     * Remove literature from the listnings
+     */
     private void doRemoveLiterature() {
 
         TextInputDialog dialog = new TextInputDialog("Title");
 
         dialog.setTitle("Remove literature");
         dialog.setHeaderText("Enter title of the literature");
-        
+
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent() /**
@@ -412,35 +414,32 @@ public class NewsStandApplication extends Application {
                  */
                 ) {
             try {
-            Literature removedLiterature = literatureList.remove(result.get());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Removed");
-            alert.setHeaderText(removedLiterature.getTitle() + " has been deleted!");
-            alert.showAndWait();
-            
-            
-                
-        }  catch (NullPointerException e ) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("something");
-            alert.setHeaderText("Not found");
-            alert.showAndWait();
+                Literature removedLiterature = literatureList.remove(result.get());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Removed");
+                alert.setHeaderText(removedLiterature.getTitle() + " has been deleted!");
+                alert.showAndWait();
+
+            } catch (NullPointerException e) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("something");
+                alert.setHeaderText("Not found");
+                alert.showAndWait();
             }
         }
         updateObservableList();
 
     }
-        
-    private void doFindMatchingLiterature(String title)
-    {
-                LiteratureRegister matchingLiterature = new LiteratureRegister();
-                for(Literature literature : literatureList.listAllLiteratures())
-                {
-                    if(literature.getTitle().toLowerCase().contains(title.toLowerCase()))
-                    {
-                        matchingLiterature.add(literature);
-                    }
-                }
-                literatures.setAll(matchingLiterature.listAllLiteratures());
+/**
+     * Search for literature
+     */
+    private void doFindMatchingLiterature(String title) {
+        LiteratureRegister matchingLiterature = new LiteratureRegister();
+        for (Literature literature : literatureList.listAllLiteratures()) {
+            if (literature.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                matchingLiterature.add(literature);
+            }
+        }
+        literatures.setAll(matchingLiterature.listAllLiteratures());
     }
 }
